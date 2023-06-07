@@ -10,7 +10,6 @@ import {
   Typography,
 } from "@mui/material";
 import {
-  BsFillCheckCircleFill,
   BsFillEyeFill,
   BsFillPatchQuestionFill,
   BsPatchQuestionFill,
@@ -141,77 +140,6 @@ const ViewResult = () => {
                   <img src={items?.questionData?.image} alt="" />
                 </div>
 
-                {/* <div className="w-full py-5">
-                  <FormControl component="fieldset">
-                    <RadioGroup
-                      aria-label={`question_${items?.questionData?._id}`}
-                      name={`question_${items?.questionData?._id}`}
-                      value={
-                        Array.isArray(items)
-                          ? items.find(
-                              (item) =>
-                                item?.question === items?.questionData?._id
-                            )?.selected_value || ""
-                          : ""
-                      }
-                    >
-                      <div className="grid lg:grid-cols-2 xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 w-full gap-5">
-                        {Object.entries(items?.questionData?.options[0])
-                          .filter(([key]) => key.startsWith("option_"))
-                          .map(([key, value], optionIndex) => {
-                            const isSelected =
-                              Array.isArray(items) &&
-                              items.find(
-                                (item) =>
-                                  item?.question === items?.questionData?._id &&
-                                  item.selected_value === key
-                              );
-                            const isAnswer =
-                              key === items?.questionData?.answer;
-                            return (
-                              <div
-                                key={optionIndex}
-                                className={`border-2 border-green-200 w-80 px-5 rounded-md mx-5 ${
-                                  isSelected ? "bg-green-50" : ""
-                                }`}
-                              >
-                                <FormControlLabel
-                                  value={key}
-                                  control={
-                                    <Radio
-                                      sx={{ color: "#6c63ff" }}
-                                      checked={isSelected !== undefined}
-                                    />
-                                  }
-                                  label={
-                                    <Box
-                                      sx={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "space-between",
-                                        width: "100%",
-                                      }}
-                                    >
-                                      <Typography>{value}</Typography>
-                                      {isSelected && (
-                                        <div>
-                                          {isSelected === isAnswer ? (
-                                            <BiCheck className="text-green-500" />
-                                          ) : (
-                                            <BiCloset className="text-red-500" />
-                                          )}
-                                        </div>
-                                      )}
-                                    </Box>
-                                  }
-                                />
-                              </div>
-                            );
-                          })}
-                      </div>
-                    </RadioGroup>
-                  </FormControl>
-                </div> */}
                 <div className="w-full py-5">
                   <FormControl component="fieldset">
                     <RadioGroup
@@ -239,7 +167,7 @@ const ViewResult = () => {
                             return (
                               <div
                                 key={optionIndex}
-                                className={`border-2 border-green-200 w-80 px-5 rounded-md mx-5 ${
+                                className={`border-2 border-green-200  px-4 xs:w-[250px] sm:w-[260px] md:[270px] lg:w-[350px] rounded-md mx-5 ${
                                   isAnswer ? "bg-green-300" : "bg-red-100"
                                 }`}
                               >
@@ -249,8 +177,6 @@ const ViewResult = () => {
                                     <Radio
                                       sx={{ color: "#6c63ff" }}
                                       checked={isSelect}
-                                      
-                                      
                                     />
                                   }
                                   label={
@@ -286,7 +212,7 @@ const ViewResult = () => {
              
                 <div className="px-5 pt-2 ">
                   <span className="font-sans font-medium  text-md text-emerald-600 ">
-                    Correct Answer is :
+                    Description :
                   </span>
 
                   {items?.questionData?.answer &&
@@ -314,79 +240,6 @@ const ViewResult = () => {
         ))}
       </div>
 
-      {/* <div className="mx-5">
-        {result?.results.map((question, index) => (
-          <Card
-            sx={{ maxWidth: "80%", margin: "auto", marginTop: 5 }}
-            key={question._id}
-          >
-            <div className="m-5 ">
-              <div className="flex items-center ">
-                <BsPatchQuestionFill className="mx-2 text-emerald-500 w-6 h-6" />
-                <span className="text-[22px] font-sans font-normal">
-                  {question.question_name}
-                </span>
-              </div>
-            </div>
-            <div className="flex justify-center w-full h-48">
-              <img src={question.image} alt="" />
-            </div>
-            <div className="px-5 py-3">
-              <span className="text-md font-sans font-normal">
-                💡 {question.qus_description}
-              </span>
-            </div>
-            <div className="w-full py-5">
-              <FormControl component="fieldset">
-                <RadioGroup
-                  aria-label={`question_${question._id}`}
-                  name={`question_${question._id}`}
-                  value={
-                    items.find((item) => item.question_id === question._id)
-                      ?.selected_value || ""
-                  }
-                >
-                  <div className="grid lg:grid-cols-2 xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 w-full gap-5">
-                    {Object.entries(question.options[0])
-                      .filter(([key]) => key.startsWith("option_"))
-                      .map(([key, value], optionIndex) => (
-                        <div
-                          key={optionIndex}
-                          className={`border-2 border-green-200 w-80 px-5 rounded-md mx-5 ${
-                            items.find(
-                              (item) =>
-                                item.question_id === question._id &&
-                                item.selected_value === key
-                            )
-                              ? "bg-green-50"
-                              : ""
-                          }`}
-                        >
-                          <FormControlLabel
-                            value={key}
-                            control={<Radio sx={{ color: "#6c63ff" }} />}
-                            label={
-                              <Box
-                                sx={{
-                                  display: "flex",
-                                  alignItems: "center",
-                                  justifyContent: "space-between",
-                                  width: "100%",
-                                }}
-                              >
-                                <Typography>{value}</Typography>
-                              </Box>
-                            }
-                          />
-                        </div>
-                      ))}
-                  </div>
-                </RadioGroup>
-              </FormControl>
-            </div>
-          </Card>
-        ))}
-      </div> */}
     </div>
   );
 };

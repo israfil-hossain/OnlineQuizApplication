@@ -8,7 +8,7 @@ import PackageBreadcrumb from "../components/common/PackageBreadcrumb";
 import StudyService from "../service/StudyService";
 import Card from "../components/common/Card";
 import { BsBookFill } from "react-icons/bs";
-import ReactMarkdown from "react-markdown";
+
 
 const Study = () => {
   const [data, setData] = useState([]);

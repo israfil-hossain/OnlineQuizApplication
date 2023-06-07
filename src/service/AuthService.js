@@ -4,6 +4,9 @@ import { API } from "../config/axiosConfig";
 const signin = (values) => {
   return API.post("/login", values);
 };
+const signup =(values)=>{
+  return API.post("/users/adduser",values);
+}
 
 const handleLogout=()=> {
   API.delete("/logout")
@@ -32,5 +35,6 @@ const AuthService = {
   signin,
   getCurrentUser,
   handleLogout,
+  signup
 };
 export default AuthService;

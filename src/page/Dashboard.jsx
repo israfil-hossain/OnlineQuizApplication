@@ -20,15 +20,14 @@ const Dashboard = () => {
         console.error("Error fetching slider:", error);
       }
     };
-    const fetchStudy = async ()=>{
-      try{
+    const fetchStudy = async () => {
+      try {
         const response = await StudyService.getStudy();
         setStudy(response.data);
-      }
-      catch(error){
+      } catch (error) {
         console.log("Error fetching study:", error);
       }
-    }
+    };
 
     fetchSlider();
     fetchStudy();
@@ -91,17 +90,15 @@ const Dashboard = () => {
         </CommonButton>
       </div>
       <div className="grid lg:grid-cols-4 gap-5 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-2 mt-3">
-        {study?.map((study,i)=>(
-            <Card
+        {study?.slice(0, 8).map((study, i) => (
+          <Card
             key={i}
             title={study?.study_name}
             image={study?.image}
             title2={study?.study_title}
             link={`/allstudy/study/${study?._id} `}
-        />
+          />
         ))}
-        
-       
       </div>
 
       {/* popular quiz category */}
@@ -119,7 +116,7 @@ const Dashboard = () => {
         </CommonButton>
       </div>
       <div className="grid lg:grid-cols-4 gap-5 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-2 mt-3">
-        {data?.map((item) => (
+        {data?.slice(0,8).map((item) => (
           <Card
             title={item?.cat_name}
             number={""}

@@ -130,24 +130,6 @@ const Questions = () => {
         </Breadcrumbs>
       </PackageBreadcrumb>
 
-      {/* <div>
-        {items.map((item, index) => (
-          <div key={item.question_id}>
-            <span className="mx-5 text-lg font-medium">
-              {index + 1}
-              {"  => "} {item.question_id}
-            </span>
-            <span>Selected Option : {item.selected_value}</span>
-            <input
-              type="text"
-              value={item.selected_value}
-              onChange={(e) =>
-                handleValueChange(item.question_id, e.target.value)
-              }
-            />
-          </div>
-        ))}
-      </div> */}
       {questions?.length > 1 ? (
         <div className="mx-5">
           {questions.map((question, index) => (
@@ -166,11 +148,6 @@ const Questions = () => {
               <div className="flex justify-center w-full h-48">
                 <img src={question.image} alt="" />
               </div>
-              {/* <div className="px-5 py-3">
-              <span className="text-md font-sans font-normal">
-                💡 {question.qus_description}
-              </span>
-            </div> */}
               <div className="w-full py-5">
                 <FormControl component="fieldset">
                   <RadioGroup

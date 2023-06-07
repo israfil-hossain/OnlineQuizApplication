@@ -1,18 +1,27 @@
-import { ErrorMessage, Field, Form, Formik } from "formik";
+
 import React, { useState } from "react";
-import signinValidationSchema from "../utils/validation/signinValidation";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Progress } from "../components/common/Progress";
+
 import { BiLockAlt } from "react-icons/bi";
-import AuthService from "../service/AuthService";
 import { toast } from "react-toastify";
+
 import { Link, useNavigate } from "react-router-dom";
+import { ErrorMessage, Field, Form, Formik } from "formik";
 import { logo } from "../assets/image";
-const Signin = () => {
-  let navigate = useNavigate();
+import { Progress } from "../components/common/Progress";
+
+import AuthService from "../service/AuthService";
+import signupValidationSchema from "../utils/validation/signupValidation";
+
+
+const Signup = () => {
+    let navigate = useNavigate();
   const initialValues = {
-    username: "",
+    name: "",
+    email: "",
+    mobile: "",
     password: "",
+    usertype: "unpaid"
   };
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -21,25 +30,16 @@ const Signin = () => {
   };
   const handleSubmit = async (values, { setSubmitting, setErrors }) => {
     setIsLoading(true);
-    console.log("object : >> ", values);
-    console.log("Submitted");
-    AuthService.signin(values)
+    // console.log("object : >> ", values);
+    // console.log("Submitted");
+    AuthService.signup(values)
       .then((response) => {
         setIsLoading(false);
-        console.log(response);
+        // console.log(response);
 
-        localStorage.setItem("token", `${response.data.token}`);
-        localStorage.setItem("role", `${response.data?.role}`);
-        localStorage.setItem("email", `${response.data?.email}`);
-        localStorage.setItem("userid", `${response.data?.userid}`);
-        localStorage.setItem("username", `${response.data?.username}`);
-        localStorage.setItem("profile", `${response.data?.profile}`);
-        // const user = response.data.username;
-        // dispatch({ type: "LOGIN", payload: user});
-        toast.success("Successfully login");
+        toast.success("Successfully Signup !");
         setSubmitting(false);
-
-        navigate("/");
+       navigate("/");
       })
       .catch((err) => {
         toast.error("Something is Wrong,");
@@ -50,39 +50,70 @@ const Signin = () => {
   return (
     <div className="h-[100vh] bg-indigo-50 flex flex-col justify-center items-center ">
       <div className="  flex-row hidden lg:flex">
-        <div className="bg-[#119F80] py-8 lg:h-[350px]  lg:w-[400px] px-4  sm:rounded-l-lg sm:px-10 shadow-md hover:shadow-lg">
+        <div className="bg-[#5b0c88] py-8 lg:min-h-[520px]  lg:w-[400px] px-4  sm:rounded-l-lg sm:px-10 shadow-md hover:shadow-lg">
           <div className="mb-6 sm:mx-auto sm:w-full sm:max-w-md flex items-center justify-center">
             <div className="mb-6 sm:mx-auto sm:w-full sm:max-w-md flex items-center justify-center">
-              <div className="flex flex-col items-center  text-center justify-between p-8">
+              <div className="flex flex-col items-center  text-center justify-between p-10 mt-16">
                 <img
                   alt=""
                   src={logo}
-                  width="180px"
-                  height="100px"
+                  width={250}
+                  height={200}
                   className="items-center mt-5"
                 />
-                {/* <img alt="" src={logo2} width="250px" height="200px " className="items-center mt-5"/> */}
               </div>
             </div>{" "}
           </div>
         </div>
-        <div className="bg-white py-8 lg:h-[350px]  lg:w-[400px] px-4 shadow-md sm:rounded-r-lg sm:px-10 hover:shadow-lg">
+        <div className="bg-white py-8 lg:min-h-[520px]  lg:w-[400px] px-4 shadow-md sm:rounded-r-lg sm:px-10 hover:shadow-lg">
           <div className="mb-6 sm:mx-auto sm:w-full sm:max-w-md">
             <h2 className="text-center text-3xl font-extrabold text-gray-900">
-              Sign In
+              Sign Up
             </h2>
           </div>
           <div>
             <Formik
               initialValues={initialValues}
-              validationSchema={signinValidationSchema}
+              validationSchema={signupValidationSchema}
               onSubmit={handleSubmit}
             >
               {({ values, handleChange, errors, touched, isSubmitting }) => (
                 <Form>
                   <div>
                     <label
-                      htmlFor="username"
+                      htmlFor="name"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      User Name
+                    </label>
+                    <div className="mt-1">
+                      <Field
+                        type="text"
+                        name="name"
+                        id="name"
+                        autoComplete="name"
+                        value={values.name}
+                        placeholder="Enter your User name"
+                        onChange={handleChange}
+                        error={touched.name && errors.name}
+                        className={`appearance-none block w-full px-3 py-2 border border-gray-300 
+                                    rounded-md shadow-sm placeholder-gray-400 
+                                    focus:ring-green-500 focus:border-green-500 focus:ring-1 sm:text-sm ${
+                                      touched.name && errors.name
+                                        ? "border-red-500"
+                                        : ""
+                                    }`}
+                      />
+                      {touched.name && errors.name && (
+                        <p className="mt-2 text-sm text-red-600 ">
+                          {errors.name}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+                  <div className="mt-3">
+                    <label
+                      htmlFor="email"
                       className="block text-sm font-medium text-gray-700"
                     >
                       Email Address
@@ -90,28 +121,61 @@ const Signin = () => {
                     <div className="mt-1">
                       <Field
                         type="email"
-                        name="username"
-                        id="username"
+                        name="email"
+                        id="email"
                         autoComplete="email"
-                        value={values.username}
+                        value={values.email}
                         placeholder="Enter your Email Address"
                         onChange={handleChange}
                         error={touched.username && errors.username}
                         className={`appearance-none block w-full px-3 py-2 border border-gray-300 
                                     rounded-md shadow-sm placeholder-gray-400 
                                     focus:ring-green-500 focus:border-green-500 focus:ring-1 sm:text-sm ${
-                                      touched.username && errors.username
+                                      touched.email && errors.email
                                         ? "border-red-500"
                                         : ""
                                     }`}
                       />
-                      {touched.username && errors.username && (
+                      {touched.email && errors.email && (
                         <p className="mt-2 text-sm text-red-600 ">
-                          {errors.username}
+                          {errors.email}
                         </p>
                       )}
                     </div>
                   </div>
+                  <div className="mt-3">
+                    <label
+                      htmlFor="mobile"
+                      className="block text-sm font-medium text-gray-700"
+                    >
+                      Mobile
+                    </label>
+                    <div className="mt-1">
+                      <Field
+                        type="mobile"
+                        name="mobile"
+                        id="mobile"
+                        autoComplete="mobile"
+                        value={values.mobile}
+                        placeholder="Enter your Mobile Number"
+                        onChange={handleChange}
+                        error={touched.mobile && errors.mobile}
+                        className={`appearance-none block w-full px-3 py-2 border border-gray-300 
+                                    rounded-md shadow-sm placeholder-gray-400 
+                                    focus:ring-green-500 focus:border-green-500 focus:ring-1 sm:text-sm ${
+                                      touched.mobile && errors.mobile
+                                        ? "border-red-500"
+                                        : ""
+                                    }`}
+                      />
+                      {touched.mobile && errors.mobile && (
+                        <p className="mt-2 text-sm text-red-600 ">
+                          {errors.mobile}
+                        </p>
+                      )}
+                    </div>
+                  </div>
+
                   <div className="mt-3">
                     <label
                       htmlFor="password"
@@ -169,40 +233,74 @@ const Signin = () => {
                           />
                         )}
                       </span>
-                      Sign in
+                      Sign Up
                     </button>
+                    <div className="py-5 ">
+                      <div className="py-2">
+                        <Link to="/login">
+                          <span className="font-medium text-yellow-600 hover:text-yellow-700">
+                            {"Have an account? please login here !"}
+                          </span>
+                        </Link>
+                      </div>
+                    </div>
                   </div>
                 </Form>
               )}
             </Formik>
-            <div className=" pt-5 ">
-            <Link to="/signup">
-              <span className="font-medium text-yellow-600 hover:text-yellow-700">
-                {"Don't Have an account? please Signup here"}
-              </span>
-            </Link>
-          </div>
           </div>
         </div>
       </div>
-
-      <div className=" lg:hidden bg-white w-96 px-8 mx-5 py-16   shadow-md rounded-lg  hover:shadow-lg">
+       {/* for mobile  */}
+      <div className=" lg:hidden bg-white w-96 px-5 mx-5 py-8   shadow-md rounded-lg  hover:shadow-lg">
         <div className="mb-6 ">
           <h2 className="text-center text-3xl font-extrabold text-gray-900">
-            Sign In
+            Sign Up
           </h2>
         </div>
         <div>
           <Formik
             initialValues={initialValues}
-            validationSchema={signinValidationSchema}
+            validationSchema={signupValidationSchema}
             onSubmit={handleSubmit}
           >
             {({ values, handleChange, errors, touched, isSubmitting }) => (
               <Form>
                 <div>
                   <label
-                    htmlFor="username"
+                    htmlFor="name"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    User Name
+                  </label>
+                  <div className="mt-1">
+                    <Field
+                      type="text"
+                      name="name"
+                      id="name"
+                      autoComplete="name"
+                      value={values.name}
+                      placeholder="Enter your User name"
+                      onChange={handleChange}
+                      error={touched.name && errors.name}
+                      className={`appearance-none block w-full px-3 py-2 border border-gray-300 
+                               rounded-md shadow-sm placeholder-gray-400 
+                               focus:ring-green-500 focus:border-green-500 focus:ring-1 sm:text-sm ${
+                                 touched.name && errors.name
+                                   ? "border-red-500"
+                                   : ""
+                               }`}
+                    />
+                    {touched.name && errors.name && (
+                      <p className="mt-2 text-sm text-red-600 ">
+                        {errors.name}
+                      </p>
+                    )}
+                  </div>
+                </div>
+                <div className="mt-3">
+                  <label
+                    htmlFor="email"
                     className="block text-sm font-medium text-gray-700"
                   >
                     Email Address
@@ -210,28 +308,61 @@ const Signin = () => {
                   <div className="mt-1">
                     <Field
                       type="email"
-                      name="username"
-                      id="username"
+                      name="email"
+                      id="email"
                       autoComplete="email"
-                      value={values.username}
+                      value={values.email}
                       placeholder="Enter your Email Address"
                       onChange={handleChange}
                       error={touched.username && errors.username}
                       className={`appearance-none block w-full px-3 py-2 border border-gray-300 
-                                    rounded-md shadow-sm placeholder-gray-400 
-                                    focus:ring-green-500 focus:border-green-500 focus:ring-1 sm:text-sm ${
-                                      touched.username && errors.username
-                                        ? "border-red-500"
-                                        : ""
-                                    }`}
+                               rounded-md shadow-sm placeholder-gray-400 
+                               focus:ring-green-500 focus:border-green-500 focus:ring-1 sm:text-sm ${
+                                 touched.email && errors.email
+                                   ? "border-red-500"
+                                   : ""
+                               }`}
                     />
-                    {touched.username && errors.username && (
+                    {touched.email && errors.email && (
                       <p className="mt-2 text-sm text-red-600 ">
-                        {errors.username}
+                        {errors.email}
                       </p>
                     )}
                   </div>
                 </div>
+                <div className="mt-3">
+                  <label
+                    htmlFor="mobile"
+                    className="block text-sm font-medium text-gray-700"
+                  >
+                    Mobile
+                  </label>
+                  <div className="mt-1">
+                    <Field
+                      type="mobile"
+                      name="mobile"
+                      id="mobile"
+                      autoComplete="mobile"
+                      value={values.mobile}
+                      placeholder="Enter your Mobile Number"
+                      onChange={handleChange}
+                      error={touched.mobile && errors.mobile}
+                      className={`appearance-none block w-full px-3 py-2 border border-gray-300 
+                               rounded-md shadow-sm placeholder-gray-400 
+                               focus:ring-green-500 focus:border-green-500 focus:ring-1 sm:text-sm ${
+                                 touched.mobile && errors.mobile
+                                   ? "border-red-500"
+                                   : ""
+                               }`}
+                    />
+                    {touched.mobile && errors.mobile && (
+                      <p className="mt-2 text-sm text-red-600 ">
+                        {errors.mobile}
+                      </p>
+                    )}
+                  </div>
+                </div>
+
                 <div className="mt-3">
                   <label
                     htmlFor="password"
@@ -251,12 +382,10 @@ const Signin = () => {
                         onChange={handleChange}
                         error={touched.password && errors.password}
                         className={`appearance-none block w-full px-3 py-2 border border-gray-300 
-                        rounded-md shadow-sm placeholder-gray-400 
-                        focus:ring-yellow-500 focus:border-yellow-500 focus:ring-1 sm:text-sm ${
-                          touched.password && errors.password
-                            ? "border-red-500"
-                            : ""
-                        }`}
+                   rounded-md shadow-sm placeholder-gray-400 
+                   focus:ring-yellow-500 focus:border-yellow-500 focus:ring-1 sm:text-sm ${
+                     touched.password && errors.password ? "border-red-500" : ""
+                   }`}
                       />
                       <button
                         type="button"
@@ -289,23 +418,25 @@ const Signin = () => {
                         />
                       )}
                     </span>
-                    Sign Login
+                    Sign Up
                   </button>
+                  <div className="py-5 ">
+                    <div className="py-2">
+                      <Link to="/login">
+                        <span className="font-medium text-yellow-600 hover:text-yellow-700">
+                          {"Have an account? please login here !"}
+                        </span>
+                      </Link>
+                    </div>
+                  </div>
                 </div>
               </Form>
             )}
           </Formik>
-          <div className="pt-5">
-            <Link to="/signup">
-              <span className="font-medium text-yellow-600 hover:text-yellow-700">
-                {"Don't Have an account? please Signup here "}
-              </span>
-            </Link>
-          </div>
         </div>
       </div>
     </div>
   );
 };
 
-export default Signin;
+export default Signup;

@@ -96,12 +96,12 @@ const Sidebar = () => {
         variants={Nav_animation}
         initial={{ x: isTabletMid ? -250 : 0 }}
         animate={isOpen ? "open" : "closed"}
-        className=" bg-background text-green-500 shadow-sm z-[999] max-w-[16rem]  w-[16rem] 
+        className=" bg-white z-50 text-green-500 shadow-sm  max-w-[16rem]  w-[16rem] 
           overflow-hidden md:relative fixed
        h-screen "
       >
         <Link to="/">
-          <div className="flex items-center gap-2.5 font-medium border-b py-3 border-slate-300  mx-3">
+          <div className="flex items-center gap-2.5 font-medium border-b py-3 border-slate-300  mx-3 z-50 bg-white">
             <img src={logo} width={45} alt="logo" />
             <span className="text-3xl text-emerald-500 font-sans font-bold ">
               MRCS

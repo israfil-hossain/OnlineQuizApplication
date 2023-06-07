@@ -27,7 +27,7 @@ const Results = () => {
 
   const fetchData = async () => { 
     const res = await QuestionService.getResult(userid);
-    console.log("Results Data ==>", res.data.results);
+   
     setData(res?.data?.results);
   };
   const handleSearchQueryChange = debounce((query) => {

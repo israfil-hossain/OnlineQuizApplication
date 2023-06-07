@@ -15,6 +15,7 @@ import TermsCondition from "./page/TermsCondition";
 import AboutUs from "./page/AboutUs";
 import ViewResult from "./page/ViewResult";
 import AllStudy from "./page/AllStudy";
+import Signup from "./page/Signup";
 
 
 
@@ -29,6 +30,7 @@ const App = () => {
         <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute> } />
 
         <Route path="/login" element={<Signin /> } />
+        <Route path="/signup" element={<Signup /> } />
 
         {/* Study */}
         <Route path="/allstudy" element={<ProtectedRoute><AllStudy /></ProtectedRoute>} />

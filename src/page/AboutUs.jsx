@@ -39,7 +39,7 @@ const AboutUs = () => {
           </span>
           <span className="text-lg font-small font-sans ">
             {`Back in 2023, keeping in mind to provide best MRCS guideline to our users, we started our journey.
-            When we started out, our (&quot;MRCS Aid&quot;) passion was and is to drive you to success by offering you the
+            When we started out, our (MRCS Aid) passion was and is to drive you to success by offering you the
             best Online Education. So that we can be a part of your success. We&#39;re dedicated to providing you with
             the best study material, special notes, mnemonics, recall questions with solution and mock test
             facilities. Still, we are trying to provide the best experience with our website &amp; mobile app.`}
@@ -52,7 +52,7 @@ const AboutUs = () => {
           <span className="text-lg font-small font-sans ">
             {`
               This is a trillion dollar question! Already you know that, from the very beginning of our journey, we are
-              trying hard to provide top-notch study materials to our users. It&#39;s our mission, it&#39;s our passion and it&#39;s
+              trying hard to provide top-notch study materials to our users. It's our mission, it's our passion and it&#39;s
               our goal to help our users to pass MRCS-A on first attempt by providing the proper guideline to our
               users.`}
           </span>
@@ -65,9 +65,19 @@ const AboutUs = () => {
             {`
               According to our goal, we are continuously trying to improve our content and make it easiest for you to
               pass MRCS-A. We hope you have enjoyed our content as much as we enjoy offering them to you. If you
-              have any questions or comments, please don&#39;t hesitate to Contact Us by E-mail. Feel free to share any
-              recommendations, errors, or other information&#39;s. You are always welcome. We appreciate your time
+              have any questions or comments, please don't hesitate to Contact Us by E-mail. Feel free to share any
+              recommendations, errors, or other information's. You are always welcome. We appreciate your time
               and patience. Thank you for reading about MRCS Aid.`}
+          </span>
+        </div>
+
+        <div className="px-8 py-4 flex flex-col ">
+          <span className="text-3xl font-medium font-sans py-2 text-emerald-500">
+          🌟 For Subscription 🌟 
+          </span>
+          <span className="text-lg font-small font-sans ">
+            {`
+              `}
           </span>
         </div>
       </div>

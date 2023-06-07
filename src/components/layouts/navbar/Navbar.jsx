@@ -76,28 +76,28 @@ const Navbar = () => {
       {/* Right Side */}
       <div className="flex items-center">
         {/* Darkmode/Lightmode toggle */}
-        <button
+        {/* <button
           className="flex items-center justify-center h-10 w-10 rounded-full text-white shadow-md hover:shadow-lg hover:shadow-emerald-600   hover:text-green-50 transition duration-150 focus:outline-none focus:ring-1 focus:ring-offset-green-100 focus:ring-green-500"
           onClick={toggle_background}
         >
           {isDarkMode ? <FiSun /> : <FiMoon />}
-        </button>
+        </button> */}
 
         {/* Message Button */}
-        <button
+        {/* <button
           className="flex items-center justify-center ml-4 h-10 w-10 rounded-full text-white hover:text-green-50 shadow-md hover:shadow-lg hover:shadow-emerald-600 transition duration-150 focus:outline-none focus:ring-1 focus:ring-offset-2 focus:ring-offset-green-100 focus:ring-green-500"
           onClick={handleMailClick}
         >
           <FiMail />
-        </button>
+        </button> */}
 
         {/* Notification Button */}
-        <button
+        {/* <button
           className="flex items-center justify-center ml-4 h-10 w-10 rounded-full text-white  hover:text-green-50 shadow-md hover:shadow-lg hover:shadow-emerald-600 transition duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-100 focus:ring-green-500"
           onClick={handleNotificationClick}
         >
           <FiBell />
-        </button>
+        </button> */}
 
         {/* Profile Button */}
         <button
@@ -111,7 +111,7 @@ const Navbar = () => {
         </button>
 
         {/* Mail Popover  */}
-        <Popover
+        {/* <Popover
           open={Boolean(mailAnchorEl)}
           anchorEl={mailAnchorEl}
           onClose={handleClose}
@@ -128,10 +128,10 @@ const Navbar = () => {
             <ListItem>Mail 1</ListItem>
             <ListItem>Mail 2</ListItem>
           </List>
-        </Popover>
+        </Popover> */}
 
         {/* Notification Popover */}
-        <Popover
+        {/* <Popover
           open={Boolean(notificationAnchorEl)}
           anchorEl={notificationAnchorEl}
           onClose={handleClose}
@@ -150,7 +150,7 @@ const Navbar = () => {
               <ListItem key={index}>Notification {index}</ListItem>
             ))}
           </List>
-        </Popover>
+        </Popover> */}
 
         {/* User Popover  */}
         <Popover

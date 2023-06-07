@@ -62,7 +62,7 @@ const ViewQuestions = ({ open, onClose, id }) => {
             <div className="flex flex-col justify-center items-center">
               <BsFillPatchCheckFill className="w-14 h-14 my-3 text-emerald-500 " />
               <h3 className="text-2xl font-medium font-sans text-emerald-800 my-3">
-                Your Response is Submited Successfuly !
+                Your Response is Submited Successfully !
               </h3>
               <Link to={`/results/viewresults/${id}`}>
               <button

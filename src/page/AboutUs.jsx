@@ -40,7 +40,7 @@ const AboutUs = () => {
           <span className="text-lg font-small font-sans ">
             {`Back in 2023, keeping in mind to provide best MRCS guideline to our users, we started our journey.
             When we started out, our (MRCS Aid) passion was and is to drive you to success by offering you the
-            best Online Education. So that we can be a part of your success. We&#39;re dedicated to providing you with
+            best Online Education. So that we can be a part of your success. We are dedicated to providing you with
             the best study material, special notes, mnemonics, recall questions with solution and mock test
             facilities. Still, we are trying to provide the best experience with our website &amp; mobile app.`}
           </span>
@@ -75,10 +75,23 @@ const AboutUs = () => {
           <span className="text-3xl font-medium font-sans py-2 text-emerald-500">
           🌟 For Subscription 🌟 
           </span>
-          <span className="text-lg font-small font-sans ">
-            {`
-              `}
+          <span className="text-3xl font-normal text-indigo-600 py-2">
+            Subscription Fee is 1000 TK for One Time. 
           </span>
+          <div className="flex py-3">
+          <span className="text-xl text-purple-900 font-medium ">
+            Bkash : &nbsp; 
+          </span>
+          <span className="text-2xl font-medium text-gray-900">  01824050330</span>
+          </div>
+          
+          <span>
+            Email: admin@mrcsaid.com or surgeons.intl@gmail.com
+          </span>
+          <div className="flex py-5">
+          <span className="text-lg font-bold font-sans">N.B. &nbsp;&nbsp;</span>
+          <span className="text-xl font-sans">After Send Money You should Send mail by your Name, Email, Batch, Transaction Number. After Confirmation Email You can Access Paid Quiz.  </span>
+          </div>
         </div>
       </div>
     </div>

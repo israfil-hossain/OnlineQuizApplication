@@ -13,7 +13,7 @@ import { BsBookFill } from "react-icons/bs";
 const Study = () => {
   const [data, setData] = useState([]);
   const { id } = useParams();
-  console.log("ID===> ", id);
+
 
   // Fetch User Data
   useEffect(() => {
@@ -22,10 +22,10 @@ const Study = () => {
 
   const fetchData = async () => {
     const res = await StudyService.singleStudy(id);
-    console.log("Study Data ==>", res.data);
+   
     setData(res.data);
   };
-  console.log("Single Study Data => ", data);
+
 
   return (
     <div>

@@ -33,8 +33,6 @@ const Dashboard = () => {
     fetchSlider();
     fetchStudy();
   }, []);
-  console.log("Slider loaded", slider);
-  console.log("Study loaded", study);
 
   const { data, isLoading, isError } = useQuery("myData", () =>
     API.get("/category").then((res) =>
@@ -52,7 +50,6 @@ const Dashboard = () => {
   if (isError) {
     return <div>Error fetching data </div>;
   }
-  console.log("Dashbaord data is : ", data);
   return (
     <div className="">
       <div className="grid lg:grid-cols-2 gap-5 md:grid-cols-2 sm:grid-cols-1">

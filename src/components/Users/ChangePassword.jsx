@@ -46,13 +46,10 @@ const ChangePassword = ({ open, onClose, data, fetchData }) => {
 
 
   const handleSubmit = async (values, { setSubmitting, setErrors }) => {
-    console.log("Values : >> ", values);
     try {
       //api call
       setIsLoading(true);
       const response = await UserService.addUser(values);
-      console.log("object :>> ", response);
-      console.log("Status Code : ", response.status);
       if (response.status === 200) {
         const responseData = response.data;
         if (responseData.error) {
@@ -95,12 +92,9 @@ const ChangePassword = ({ open, onClose, data, fetchData }) => {
   };
   
   const handleUpdate = async (values, { setSubmitting, setErrors }) => {
-    console.log("Values ", values);
     try {
       //api call
       const response = await UserService.updateUser(data._id, values);
-      console.log("object :>> ", response);
-      console.log("Status Code : ", response.status);
       if (response.status === 200) {
         toast.success("Successfully Update Password ");
         setSubmitting(false);

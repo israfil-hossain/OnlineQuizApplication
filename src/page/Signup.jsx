@@ -1,4 +1,3 @@
-
 import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 
@@ -13,15 +12,14 @@ import { Progress } from "../components/common/Progress";
 import AuthService from "../service/AuthService";
 import signupValidationSchema from "../utils/validation/signupValidation";
 
-
 const Signup = () => {
-    let navigate = useNavigate();
+  let navigate = useNavigate();
   const initialValues = {
     name: "",
     email: "",
     mobile: "",
     password: "",
-    usertype: "unpaid"
+    usertype: "unpaid",
   };
   const [showPassword, setShowPassword] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
@@ -30,16 +28,14 @@ const Signup = () => {
   };
   const handleSubmit = async (values, { setSubmitting, setErrors }) => {
     setIsLoading(true);
-    // console.log("object : >> ", values);
-    // console.log("Submitted");
+  
     AuthService.signup(values)
       .then((response) => {
         setIsLoading(false);
-        // console.log(response);
 
         toast.success("Successfully Signup !");
         setSubmitting(false);
-       navigate("/");
+        navigate("/");
       })
       .catch((err) => {
         toast.error("Something is Wrong,");
@@ -50,7 +46,9 @@ const Signup = () => {
   return (
     <div className="h-[100vh] bg-indigo-50 flex flex-col justify-center items-center ">
       <div className="  flex-row hidden lg:flex">
-        <div className="bg-[#5b0c88] py-8 lg:min-h-[520px]  lg:w-[400px] px-4  sm:rounded-l-lg sm:px-10 shadow-md hover:shadow-lg">
+        <div className="bg-gradient-to-r from-emerald-400 via-emerald-500 to-yellow-300 hover:from-yellow-300
+        hover:via-emerald-400 hover:to-emerald-600 
+         py-8 lg:min-h-[520px]  lg:w-[400px] px-4  sm:rounded-l-lg sm:px-10 shadow-md hover:shadow-lg">
           <div className="mb-6 sm:mx-auto sm:w-full sm:max-w-md flex items-center justify-center">
             <div className="mb-6 sm:mx-auto sm:w-full sm:max-w-md flex items-center justify-center">
               <div className="flex flex-col items-center  text-center justify-between p-10 mt-16">
@@ -251,8 +249,13 @@ const Signup = () => {
           </div>
         </div>
       </div>
-       {/* for mobile  */}
+      {/* for mobile  */}
       <div className=" lg:hidden bg-white w-96 px-5 mx-5 py-8   shadow-md rounded-lg  hover:shadow-lg">
+        <div className="  flex justify-center items-center w-full mb-5">
+          <div className="w-20 h-20 rounded-md ">
+            <img src={logo} alt="" className="" />
+          </div>
+        </div>
         <div className="mb-6 ">
           <h2 className="text-center text-3xl font-extrabold text-gray-900">
             Sign Up

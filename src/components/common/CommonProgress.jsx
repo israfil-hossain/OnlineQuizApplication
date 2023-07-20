@@ -14,23 +14,20 @@ export const CommonProgress = () => {
         height:"100%"
       }}
     >
-      {/* <CircularProgress size={70} color="secondary"/>  */}
       <Box
         sx={{
-          opacity: 0.9,
-          marginTop:"25px",
+          opacity: 1,
+          marginTop:"80px",
           borderRadius: "20px",
           boxShadow: 2,
           alignItems: "center",
           background: "white",
-          justifyContent: "center",
-          justifyItems: "center",
         }}
       >
         <img
           src={loader}
           alt="loader"
-          className="lg:w-[450px] xs:w-[250px] lg:h-[350px] xs:h-[150px]"
+          className="lg:w-[450px] xs:w-[350px] lg:h-[350px] xs:h-[250px] justify-center p-4"
         />
       </Box>
     </Box>

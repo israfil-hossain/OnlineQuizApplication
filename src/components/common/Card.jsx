@@ -3,7 +3,6 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 
 const Card = ({ image, title, number, title2, link, desc, disabled }) => {
-  console.log("True or False =>", disabled);
 
   if (!disabled) {
     return (

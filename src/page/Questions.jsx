@@ -34,7 +34,6 @@ const Questions = () => {
   const userid = localStorage.getItem("userid");
   const username = localStorage.getItem("username");
 
-  console.log("Userid : ", userid);
   const handleClose = () => setOpen(false);
 
   const handleValueChange = (questionId, selectedValue) => {
@@ -71,7 +70,6 @@ const Questions = () => {
         items: items,
         quizName: id,
       };
-      // console.log("Payload ", payload);
 
       const allQuestionsAnswered = questions.every((question) =>
         items.some(
@@ -82,20 +80,19 @@ const Questions = () => {
 
       if (!allQuestionsAnswered) {
         // You can show an error message or highlight the unanswered questions
-        alert("Please answer all questions before submitting.");
+        alert("Please make sure fill-up every question answer, otherwise you can't Submit");
         setIsLoading(false);
         return;
       } else {
         const response = await QuestionService.addResult(payload);
         if (response.status === 200) {
-          console.log("response id ", response?.data?.resultdata?._id);
           setQid(response?.data?.resultdata?._id);
           setOpen(true);
           setIsLoading(false);
         } else {
           console.log("Something went wrong");
         }
-        console.log("Result Resonse : ", response);
+      
       }
     } catch (err) {
       console.log("Error", err);

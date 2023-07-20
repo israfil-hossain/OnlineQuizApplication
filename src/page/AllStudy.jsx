@@ -20,7 +20,6 @@ const AllStudy = () => {
     const fetchData = async () => {
       try {
         const res = await StudyService.getStudy();
-        console.log("Study Data ==>", res.data);
         setData(res.data);
         setIsLoading(false);
       } catch (error) {

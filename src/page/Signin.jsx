@@ -21,12 +21,11 @@ const Signin = () => {
   };
   const handleSubmit = async (values, { setSubmitting, setErrors }) => {
     setIsLoading(true);
-    console.log("object : >> ", values);
-    console.log("Submitted");
+  
     AuthService.signin(values)
       .then((response) => {
         setIsLoading(false);
-        console.log(response);
+     
 
         localStorage.setItem("token", `${response.data.token}`);
         localStorage.setItem("role", `${response.data?.role}`);
@@ -50,7 +49,11 @@ const Signin = () => {
   return (
     <div className="h-[100vh] bg-indigo-50 flex flex-col justify-center items-center ">
       <div className="  flex-row hidden lg:flex">
-        <div className="bg-[#119F80] py-8 lg:h-[350px]  lg:w-[400px] px-4  sm:rounded-l-lg sm:px-10 shadow-md hover:shadow-lg">
+        <div className="
+        bg-gradient-to-r from-emerald-400 via-emerald-500 to-yellow-300 hover:from-yellow-300
+        hover:via-emerald-400 hover:to-emerald-600 
+        
+        py-8 lg:h-[350px]  lg:w-[400px] px-4  sm:rounded-l-lg sm:px-10 shadow-md hover:shadow-lg">
           <div className="mb-6 sm:mx-auto sm:w-full sm:max-w-md flex items-center justify-center">
             <div className="mb-6 sm:mx-auto sm:w-full sm:max-w-md flex items-center justify-center">
               <div className="flex flex-col items-center  text-center justify-between p-8">
@@ -186,8 +189,8 @@ const Signin = () => {
         </div>
       </div>
 
-      <div className=" lg:hidden bg-white w-full px-4 py-8  shadow-md rounded-lg  hover:shadow-lg  container mx-auto">
-        <div className=""> 
+      <div className=" lg:hidden bg-white w-96 px-4 py-8  shadow-md rounded-lg  hover:shadow-lg">
+       
         <div className="  flex justify-center items-center w-full mb-5">
           <div className="w-20 h-20 rounded-md ">
           <img src={logo} alt="" className="" />
@@ -312,7 +315,7 @@ const Signin = () => {
         </div>
         </div>
       </div>
-    </div>
+    
   );
 };
 

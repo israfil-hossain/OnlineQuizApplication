@@ -21,7 +21,6 @@ const Sidebar = () => {
   const sidebarRef = useRef();
   const { pathname } = useLocation();
 
-  console.log("Pathname ", pathname);
 
   useEffect(() => {
     if (isTabletMid) {

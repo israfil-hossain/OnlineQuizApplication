@@ -15,13 +15,10 @@ import { CommonProgress } from "../components/common/CommonProgress";
 const Quiz = () => {
   const location = useLocation();
   const category = new URLSearchParams(location.search).get("category");
-  console.log("Category params is : ", category);
 
   const { data, isLoading, isError } = useQuery(["myData", category], () =>
     API.get(`/quiz/quizbycategory?category=${category}`).then((res) => res.data)
   );
-
-  console.log("Quiz Data is : ", data);
 
   return (
     <div>

@@ -46,7 +46,6 @@ const ViewResult = () => {
 
   const passingMark = (passingPercentage / 100) * result?.results?.length;
 
-  console.log("passingMark ==> : ", passingMark);
 
   return (
     <div>

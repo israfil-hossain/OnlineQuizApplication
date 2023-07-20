@@ -35,7 +35,6 @@ const User = () => {
 
   const fetchData = async () => {
     const res = await UserService.getSingleUser(userid);
-    console.log("User==>", res.data);
     setData(res.data);
   };
 
@@ -51,7 +50,6 @@ const User = () => {
 
       // Replace 'PUT_API_ENDPOINT' with the actual API endpoint URL for image upload
       await UserService.UploadImage(data?._id, formData);
-      console.log("Upload Successful");
       toast.success("Profile Image Upload Success");
     } catch (error) {
       console.error("Error uploading image:", error);

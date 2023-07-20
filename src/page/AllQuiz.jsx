@@ -64,7 +64,7 @@ const AllQuiz = () => {
           <CommonProgress />
         </div>
       ) : (
-        <div className="grid lg:grid-cols-5 gap-5 md:grid-cols-2 sm:grid-cols-1 mt-5">
+        <div className="grid lg:grid-cols-5 gap-5 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-2 mt-5">
           {data.map((quiz, i) => (
             <Card
               key={i}

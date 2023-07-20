@@ -19,6 +19,7 @@ const Results = () => {
   const [data , setData] = useState([]);
   const [searchQuery, setSearchQuery] = useState("");
   const userid = localStorage.getItem("userid"); 
+  const [isLoading, setIsLoading] = useState(true);
 
   // Fetch User Data
   useEffect(() => {
@@ -26,15 +27,20 @@ const Results = () => {
   }, [userid]);
 
   const fetchData = async () => { 
-    const res = await QuestionService.getResult(userid);
-   
-    setData(res?.data?.results);
+    setIsLoading(true); // Set isLoading to true before fetching data
+    try{
+      const res = await QuestionService.getResult(userid);
+      setData(res?.data?.results);
+      setIsLoading(false); 
+    }
+    catch(error){
+      console.error('Error fetching data:', error);
+      setIsLoading(false);
+    }
   };
   const handleSearchQueryChange = debounce((query) => {
     setSearchQuery(query);
   }, 500);
-
-  console.log("Data is ", data);
 
   const filteredData = data?.filter((result) =>
     result.quizName.toLowerCase().includes(searchQuery.toLowerCase())
@@ -70,7 +76,7 @@ const Results = () => {
        
       </Stack>
       <div className="pt-5">
-        <CommonTable   columns={resultHeader} data={filteredData} typeData={"result"} onDeleted={fetchData}/>
+        <CommonTable  isLoading={isLoading} columns={resultHeader} data={filteredData} typeData={"result"} onDeleted={fetchData}/>
         
       </div>
     </div>

@@ -1,27 +1,38 @@
 //External Import
-import React, { useEffect, useState } from "react";
-import { Box, Breadcrumbs, Stack } from "@mui/material";
+import React from "react";
+import { Box, Breadcrumbs } from "@mui/material";
 import { Link } from "react-router-dom";
-import { AiOutlineAppstore } from "react-icons/ai";
-import { LoadingButton } from "@mui/lab";
-import { debounce } from "lodash";
 
 //Internal Import
 import PackageBreadcrumb from "../components/common/PackageBreadcrumb";
 
-import CategoryService from "../service/CategoryService";
 import Card from "../components/common/Card";
-import { background2, background3, design3, design4 } from "../assets/image";
 import { BsBoxSeamFill } from "react-icons/bs";
 import { API } from "../config/axiosConfig";
 import { useQuery } from "react-query";
+import { CommonProgress } from "../components/common/CommonProgress";
+import NotFound from "../components/common/NotFound";
+
 const Category = () => {
   const { data, isLoading, isError } = useQuery("myData", () =>
     API.get("/category").then((res) =>
       res.data.filter((item) => item.cat_status === "active")
     )
   );
-
+  if (isLoading) {
+    return (
+      <div>
+        <CommonProgress />
+      </div>
+    );
+  }
+  if(isError){
+    return(
+      <div>
+        <NotFound />
+      </div>
+    )
+  }
   return (
     <div>
       <PackageBreadcrumb>

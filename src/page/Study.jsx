@@ -69,7 +69,7 @@ const Study = () => {
         </div>
 
         <div className="pb-10 pt-5 px-4">
-          <span>👋 Go to Quiz Link : </span>
+          <span>👋 Take an Exam  : </span>
           <Link to={data?.link}>
             <span className="text-blue-400">{data?.link}</span>
           </Link>

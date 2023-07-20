@@ -2,13 +2,13 @@ import React from 'react';
 import Button from '@mui/material/Button';
 
 function CommonButton(props) {
-  const { link, color, width, height, className } = props;
+  const {color, width, height, className } = props;
 
   return (
     <Button
       variant="contained"
       color={color || 'primary'}
-      href={link}
+      
       className={className}
       sx={{ width: width, height: height,color:"white",fontWeight:"medium",
         borderRadius: 'md',
@@ -17,7 +17,7 @@ function CommonButton(props) {
         },}}
       disableElevation
     >
-      {props.children}
+      <span className='xs:text-xs md:text-sm lg:text-xs xl:text-sm'>{props.children}</span>
     </Button>
   );
 }

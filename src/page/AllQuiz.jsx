@@ -8,32 +8,43 @@ import PackageBreadcrumb from "../components/common/PackageBreadcrumb";
 import { MdOutlineQuiz } from "react-icons/md";
 
 import QuizService from "../service/QuizService";
-
 import Card from "../components/common/Card";
 import UserService from "../service/UserService";
+import { CommonProgress } from "../components/common/CommonProgress";
+
 const AllQuiz = () => {
   const [data, setData] = useState([]);
-  const [userType, setUserType] = useState('');
-  const id = localStorage.getItem("userid"); 
+  const [userType, setUserType] = useState("");
+  const id = localStorage.getItem("userid");
+  const [isLoading, setIsLoading] = useState(true);
 
   // Fetch User Data
   useEffect(() => {
-    const getUserData = async () =>{
-      const res = await UserService.getSingleUser(id);
-      setUserType(res?.data?.usertype);
-    }
+    const fetchData = async () => {
+      try {
+        const res = await QuizService.getQuiz();
+        setData(res.data);
+        setIsLoading(false); // After fetching data, set isLoading to false
+      } catch (error) {
+        // Handle any error that might occur during data fetching
+        console.error("Error fetching data:", error);
+        setIsLoading(false); // Set isLoading to false even if there's an error
+      }
+    };
+
+    const getUserData = async () => {
+      try {
+        const res = await UserService.getSingleUser(id);
+        setUserType(res?.data?.usertype);
+      } catch (error) {
+        // Handle any error that might occur while fetching user data
+        console.error("Error fetching user data:", error);
+      }
+    };
+
     getUserData(id);
     fetchData();
   }, [id]);
-  
-  const fetchData = async () => {
-    const res = await QuizService.getQuiz();
-    console.log("Quiz Data ==>", res.data);
-    setData(res.data);
-  };
-  console.log("All Quiz Data => ", data);
-
-  
 
   return (
     <div>
@@ -45,22 +56,28 @@ const AllQuiz = () => {
               <span className="text-emerald-400 ">&nbsp;All Quiz </span>
             </Box>
           </Link>
-          {/* <Typography color="grey">sdfgh</Typography> */}
         </Breadcrumbs>
       </PackageBreadcrumb>
-      <div className="grid lg:grid-cols-5 gap-5 md:grid-cols-2 sm:grid-cols-1 mt-5">
-        {data?.map((quiz, i) => (
-          <Card
-            key={i}
-            title={quiz?.quiz_name}
-            number={""}
-            image={quiz?.image}
-            title2={"Question"}
-            link={`/questions?id=${quiz?.quiz_name}`}
-            disabled={quiz?.accessibility === 'paid' && userType === 'unpaid'}
-          />
-        ))}
-      </div>
+
+      {isLoading ? (
+        <div>
+          <CommonProgress />
+        </div>
+      ) : (
+        <div className="grid lg:grid-cols-5 gap-5 md:grid-cols-2 sm:grid-cols-1 mt-5">
+          {data.map((quiz, i) => (
+            <Card
+              key={i}
+              title={quiz?.quiz_name}
+              number={""}
+              image={quiz?.image}
+              title2={"Question"}
+              link={`/questions?id=${quiz?.quiz_name}`}
+              disabled={quiz?.accessibility === "paid" && userType === "unpaid"}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

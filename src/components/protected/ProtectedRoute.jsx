@@ -5,7 +5,7 @@ import MainLayout from '../layouts/MainLayout';
 const ProtectedRoute = ({children}) => {
   const token = localStorage.getItem("token"); 
  return token ? (
-  <MainLayout>{children}</MainLayout>
+ {children}
  ): <Navigate to="/login" /> ; 
 }
 

@@ -11,33 +11,23 @@ import {
 } from "@mui/material";
 import {
   BsFillEyeFill,
-  BsFillPatchQuestionFill,
   BsPatchQuestionFill,
   BsTrophyFill,
 } from "react-icons/bs";
-import { useLocation } from "react-router-dom";
-import { API } from "../config/axiosConfig";
-import PackageBreadcrumb from "../components/common/PackageBreadcrumb";
 
-import { Progress } from "../components/common/Progress";
+import PackageBreadcrumb from "../components/common/PackageBreadcrumb";
 
 import { Link } from "react-router-dom";
 import { congratulation } from "../assets/image";
 import { useParams } from "react-router-dom/dist";
 import QuestionService from "../service/QuestionService";
 import { AiFillCloseCircle } from "react-icons/ai";
-import { BiCheck, BiCloset } from "react-icons/bi";
+import { BiCheck } from "react-icons/bi";
 
 const ViewResult = () => {
-  // const location = useLocation();
-  // const id = new URLSearchParams(location.search).get("id");
   const { id } = useParams();
-  console.log("ID===> ", id);
 
   const [result, setResult] = useState([]);
-  
-  // const [items, setItems] = useState([]);
-  // const [isloading, setIsLoading] = useState(false);
 
   useEffect(() => {
     const fetchResult = async () => {
@@ -51,8 +41,12 @@ const ViewResult = () => {
 
     fetchResult();
   }, [id]);
+  
+  const passingPercentage = 65; 
 
-  console.log("Result ==> : ", result);
+  const passingMark = (passingPercentage / 100) * result?.results?.length;
+
+  console.log("passingMark ==> : ", passingMark);
 
   return (
     <div>
@@ -84,7 +78,7 @@ const ViewResult = () => {
             <BsFillEyeFill size={23} className="min-w-max text-emerald-400" />
             &nbsp; View Result
           </Box>
-          {/* <Typography color="grey">sdfgh</Typography> */}
+     
         </Breadcrumbs>
       </PackageBreadcrumb>
       <div className="w-full  bg-gradient-to-r from-emerald-400 to-teal-300 rounded-md mt-8">
@@ -99,7 +93,7 @@ const ViewResult = () => {
               {result?.quizName}
             </span>
             <hr />
-            {result?.totalScore > 20 ? (
+            { (result?.totalScore >=  passingMark) ? (
               <span className="md:lg:sm:text-2xl xs:text-lg font-bold font-sans text-orange-400 py-2 ">
                 {" "}
                 🚩 You are Passed ! 😊
@@ -107,7 +101,7 @@ const ViewResult = () => {
             ) : (
               <span className="md:lg:sm:text-2xl xs:text-lg font-bold font-sans text-red-500 py-2 ">
                 {" "}
-                😑 You are Failed !
+                😑 Don't worry! You will do better on retake,InshaAllah
               </span>
             )}
 
@@ -117,7 +111,7 @@ const ViewResult = () => {
               </span>
               <span className="md:lg:sm:text-2xl xs:text-xl font-bold font-sans text-pink-500 px-4">
                 {" "}
-                {result?.totalScore}/{50}
+                {result?.totalScore}/{result?.results?.length}
               </span>
             </div>
           </div>
@@ -127,17 +121,23 @@ const ViewResult = () => {
         {result?.results?.map((items, i) => (
           <div key={i}>
             <div key={items?.questionData?._id}>
-              <Card sx={{ maxWidth: "80%", margin: "auto", marginTop: 5 }}>
-                <div className="m-5 ">
+              <Card sx={{ maxWidth: "90%", margin: "auto", marginTop: 5 }}>
+                <div className="">
                   <div className="flex items-center ">
-                    <BsPatchQuestionFill className="mx-2 text-emerald-500 w-6 h-6" />
-                    <span className="text-[22px] font-sans font-normal">
+                    <BsPatchQuestionFill className="mx-2 text-emerald-500 w-6 h-6 ml-4" />
+                    <span className="text-[22px] font-sans font-normal p-5">
                       {items?.questionData?.question_name}
                     </span>
                   </div>
                 </div>
-                <div className="flex justify-center w-full h-48">
-                  <img src={items?.questionData?.image} alt="" />
+                <div className="flex justify-center items-center w-full h-48">
+                  <div className="w-64 h-52 rounded-md">
+                    <img
+                      src={items?.questionData?.image}
+                      alt=""
+                      className="w-full h-full object-contain rounded-lg "
+                    />
+                  </div>
                 </div>
 
                 <div className="w-full py-5">
@@ -158,12 +158,11 @@ const ViewResult = () => {
                         {Object.entries(items?.questionData?.options[0])
                           .filter(([key]) => key.startsWith("option_"))
                           .map(([key, value], optionIndex) => {
-                            const isSelect = 
-                             key === items?.selected_value;
-                            
+                            const isSelect = key === items?.selected_value;
+
                             const isAnswer =
                               key === items?.questionData?.answer;
-                      
+
                             return (
                               <div
                                 key={optionIndex}
@@ -192,7 +191,7 @@ const ViewResult = () => {
                                       {isSelect && (
                                         <div>
                                           {isSelect === isAnswer ? (
-                                            <BiCheck  className="text-emerald-500 ml-5 w-5 h-5" />
+                                            <BiCheck className="text-emerald-500 ml-5 w-5 h-5" />
                                           ) : (
                                             <AiFillCloseCircle className="text-red-500 ml-5 w-5 h-5 " />
                                           )}
@@ -209,7 +208,6 @@ const ViewResult = () => {
                   </FormControl>
                 </div>
 
-             
                 <div className="px-5 pt-2 ">
                   <span className="font-sans font-medium  text-md text-emerald-600 ">
                     Description :
@@ -239,7 +237,6 @@ const ViewResult = () => {
           </div>
         ))}
       </div>
-
     </div>
   );
 };

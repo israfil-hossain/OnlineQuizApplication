@@ -2,30 +2,17 @@ import { useEffect, useState, useContext } from "react";
 import { useRef } from "react";
 import { motion } from "framer-motion";
 import { useMediaQuery } from "react-responsive";
-import { Link, NavLink, useLocation, matchPath } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { MenuContext } from "../../../context/MenuContext";
 
 // * React icons
-import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
+
 import { AiFillTrophy, AiOutlineAppstore } from "react-icons/ai";
-import { FcAbout } from "react-icons/fc";
 import { BsBoxSeam, BsPassFill, BsPatchExclamationFill, BsPerson, BsQuestionDiamondFill } from "react-icons/bs";
 import { GiBlackBook } from "react-icons/gi";
 import logo from "../../../assets/mrcs.png";
 import { MdOutlineQuiz } from "react-icons/md";
 
-// const subMenusList = [
-//   {
-//     name: "build",
-//     icon: RiBuilding3Line,
-//     menus: ["auth", "app settings", "Storage", "hosting"],
-//   },
-//   {
-//     name: "analytics",
-//     icon: TbReportAnalytics,
-//     menus: ["dashboard", "realtime", "events"],
-//   },
-// ];
 
 const Sidebar = () => {
   let isTabletMid = useMediaQuery({ query: "(max-width: 768px)" });
@@ -96,7 +83,7 @@ const Sidebar = () => {
         variants={Nav_animation}
         initial={{ x: isTabletMid ? -250 : 0 }}
         animate={isOpen ? "open" : "closed"}
-        className=" bg-white z-50 text-green-500 shadow-sm  max-w-[16rem]  w-[16rem] 
+        className=" bg-white  text-green-500 shadow-xl z-[999] max-w-[16rem]  w-[16rem] 
           overflow-hidden md:relative fixed
        h-screen "
       >
@@ -182,7 +169,7 @@ const Sidebar = () => {
             
           </ul>
         </div>
-        <motion.div
+        {/* <motion.div
           onClick={() => {
             // setOpen(!open);
             toggleMenu(!isOpen);
@@ -208,7 +195,7 @@ const Sidebar = () => {
           ) : (
             <IoIosArrowForward size={35} />
           )}
-        </motion.div>
+        </motion.div> */}
       </motion.div>
     </>
   );

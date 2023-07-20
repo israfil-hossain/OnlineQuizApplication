@@ -6,25 +6,29 @@ import { Link } from "react-router-dom";
 //Internal Import
 import PackageBreadcrumb from "../components/common/PackageBreadcrumb";
 
-
 import StudyService from "../service/StudyService";
 
 import Card from "../components/common/Card";
 import { BsBookFill } from "react-icons/bs";
+import { CommonProgress } from "../components/common/CommonProgress";
 const AllStudy = () => {
   const [data, setData] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Fetch User Data
   useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const res = await StudyService.getStudy();
+        console.log("Study Data ==>", res.data);
+        setData(res.data);
+        setIsLoading(false);
+      } catch (error) {
+        setIsLoading(false);
+      }
+    };
     fetchData();
   }, []);
-
-  const fetchData = async () => {
-    const res = await StudyService.getStudy();
-    console.log("Study Data ==>", res.data);
-    setData(res.data);
-  };
-  console.log("All Study Data => ", data);
 
   return (
     <div>
@@ -39,17 +43,23 @@ const AllStudy = () => {
           {/* <Typography color="grey">sdfgh</Typography> */}
         </Breadcrumbs>
       </PackageBreadcrumb>
-      <div className="grid lg:grid-cols-5 gap-5 md:grid-cols-2 sm:grid-cols-1 mt-5">
-      {data?.map((study,i)=>(
+      {isLoading ? (
+        <div>
+          <CommonProgress />
+        </div>
+      ) : (
+        <div className="grid lg:grid-cols-5 gap-4 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-2  mt-5">
+          {data?.map((study, i) => (
             <Card
-            key={i}
-            title={study?.study_name}
-            image={study?.image}
-            title2={study?.study_title}
-            link={`/allstudy/study/${study?._id} `}
-        />
-        ))}
-      </div>
+              key={i}
+              title={study?.study_name}
+              image={study?.image}
+              title2={study?.study_title}
+              link={`/allstudy/study/${study?._id} `}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

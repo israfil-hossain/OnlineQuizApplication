@@ -16,54 +16,152 @@ import AboutUs from "./page/AboutUs";
 import ViewResult from "./page/ViewResult";
 import AllStudy from "./page/AllStudy";
 import Signup from "./page/Signup";
-
-
-
-
+import MainLayout from "./components/layouts/MainLayout";
 
 const App = () => {
   return (
-    
-      <Routes>
-        
-        {/* Dashboard */}
-        <Route path="/" element={<ProtectedRoute><Dashboard /></ProtectedRoute> } />
+    <Routes>
+      {/* Dashboard */}
+      <Route
+        path="/"
+        element={
+          <MainLayout>
+            <Dashboard />
+          </MainLayout>
+        }
+      />
 
-        <Route path="/login" element={<Signin /> } />
-        <Route path="/signup" element={<Signup /> } />
+      <Route path="/login" element={<MainLayout><Signin /></MainLayout>} />
+      <Route path="/signup" element={<MainLayout><Signup /></MainLayout>} />
 
-        {/* Study */}
-        <Route path="/allstudy" element={<ProtectedRoute><AllStudy /></ProtectedRoute>} />
-        <Route path="/allstudy/study/:id" element={<ProtectedRoute><Study /></ProtectedRoute>} />
+      {/* Study */}
+      <Route
+        path="/allstudy"
+        element={
+          <MainLayout>
+            <AllStudy />
+          </MainLayout>
+        }
+      />
+      <Route
+        path="/allstudy/study/:id"
+        element={
+          <MainLayout>
+            <Study />
+          </MainLayout>
+        }
+      />
 
-        {/* Category */}
-        <Route path="/category" element={<ProtectedRoute><Category /></ProtectedRoute>} />
-        <Route path="/category/quiz" element={<ProtectedRoute><Quiz /></ProtectedRoute>} />
+      {/* Category */}
+      <Route
+        path="/category"
+        element={
+          <MainLayout>
+            <Category />
+          </MainLayout>
+        }
+      />
+      <Route
+        path="/category/quiz"
+        element={
+          <MainLayout>
+            <Quiz />
+          </MainLayout>
+        }
+      />
 
-        {/* Quiz */}
-        <Route path="/allquiz" element={<ProtectedRoute><AllQuiz /></ProtectedRoute>} />
-        <Route path="/allquiz/quiz" element={<ProtectedRoute><Quiz /></ProtectedRoute>} />
+      {/* Quiz */}
+      <Route
+        path="/allquiz"
+        element={
+          <MainLayout>
+            <AllQuiz />
+          </MainLayout>
+        }
+      />
+      <Route
+        path="/allquiz/quiz"
+        element={
+          <MainLayout>
+            <Quiz />
+          </MainLayout>
+        }
+      />
 
-       
-        {/* Questions */}
-        <Route path="/questions" element={<ProtectedRoute><Questions /></ProtectedRoute>} />
+      {/* Questions */}
+      <Route
+        path="/questions"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <Questions />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
 
-         {/* Results */}
-         <Route path="/results" element={<ProtectedRoute><Results /></ProtectedRoute>} />
-         <Route path="/results/viewresults/:id" element={<ProtectedRoute><ViewResult /></ProtectedRoute>} />
-        
+      {/* Results */}
+      <Route
+        path="/results"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <Results />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/results/viewresults/:id"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <ViewResult />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
 
-        {/* Users */}
-        <Route path="/profile" element={<ProtectedRoute><User/></ProtectedRoute>} />
-        <Route path="/users/edit" element={<ProtectedRoute><User/></ProtectedRoute>} />
- 
-        {/* Quiz */}
-        <Route path="/terms" element={<ProtectedRoute><TermsCondition /></ProtectedRoute>} />
-        <Route path="/aboutus" element={<ProtectedRoute><AboutUs /></ProtectedRoute>} />
+      {/* Users */}
+      <Route
+        path="/profile"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <User />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
+      <Route
+        path="/users/edit"
+        element={
+          <ProtectedRoute>
+            <MainLayout>
+              <User />
+            </MainLayout>
+          </ProtectedRoute>
+        }
+      />
 
-        
-      </Routes>
-   
+      {/* Quiz */}
+      <Route
+        path="/terms"
+        element={
+          <MainLayout>
+            <TermsCondition />
+          </MainLayout>
+        }
+      />
+      <Route
+        path="/aboutus"
+        element={
+          <MainLayout>
+            <AboutUs />
+          </MainLayout>
+        }
+      />
+    </Routes>
   );
 };
 

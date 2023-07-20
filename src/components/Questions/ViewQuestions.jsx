@@ -2,14 +2,10 @@ import React from "react";
 import {
   Backdrop,
   Box,
-  Chip,
-  Divider,
   Fade,
-  IconButton,
   Modal,
-  Typography,
+
 } from "@mui/material";
-import { AiOutlineCloseCircle } from "react-icons/ai";
 import { BsFillPatchCheckFill } from "react-icons/bs";
 import { Link } from "react-router-dom";
 
@@ -18,13 +14,14 @@ const style = {
   top: "50%",
   left: "50%",
   transform: "translate(-50%,-50%)",
-  width: [],
+  width: "350px",
   bgcolor: "background.paper",
   border: "2px solid #F7FDFF",
   borderRadius: "10px",
   boxShadow: `3px 2px 3px 1px rgba(0, 0, 0, 0.2)`,
   p: 4,
   maxHeight: "90vh",
+ 
   overflow: "auto",
 };
 const ViewQuestions = ({ open, onClose, id }) => {

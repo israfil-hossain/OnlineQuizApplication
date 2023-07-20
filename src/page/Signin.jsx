@@ -186,7 +186,14 @@ const Signin = () => {
         </div>
       </div>
 
-      <div className=" lg:hidden bg-white w-96 px-8 mx-5 py-16   shadow-md rounded-lg  hover:shadow-lg">
+      <div className=" lg:hidden bg-white w-full px-4 py-8  shadow-md rounded-lg  hover:shadow-lg  container mx-auto">
+        <div className=""> 
+        <div className="  flex justify-center items-center w-full mb-5">
+          <div className="w-20 h-20 rounded-md ">
+          <img src={logo} alt="" className="" />
+          </div>
+          
+        </div>
         <div className="mb-6 ">
           <h2 className="text-center text-3xl font-extrabold text-gray-900">
             Sign In
@@ -302,6 +309,7 @@ const Signin = () => {
               </span>
             </Link>
           </div>
+        </div>
         </div>
       </div>
     </div>

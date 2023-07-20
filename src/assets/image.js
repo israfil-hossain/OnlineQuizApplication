@@ -6,4 +6,5 @@ export const congratulation = require('./images/Congratulation.png');
 
 export const notfound = require('./images/notfound.gif');
 
+export const loader = require('./images/loader.gif')
 

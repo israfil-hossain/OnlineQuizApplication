@@ -7,6 +7,7 @@ import CommonButton from "../components/common/CommonButton";
 import Card from "../components/common/Card";
 import SliderService from "../service/SliderService";
 import StudyService from "../service/StudyService";
+import { Link } from "react-router-dom";
 
 const Dashboard = () => {
   const [slider, setSlider] = useState([]);
@@ -58,16 +59,16 @@ const Dashboard = () => {
         {slider?.map((slider, i) => (
           <div
             key={i}
-            className="bg-white  rounded-lg justify-center items-center p-4  flex flex-col w-full shadow-sm bg-opacity-30 backdrop-filter backdrop-blur-sm"
+            className="bg-gray-100 rounded-lg justify-center items-center p-4  flex flex-col w-full shadow-lg bg-opacity-30 backdrop-filter backdrop-blur-lg"
           >
-            <div className="h-64 mb-8">
+            <div className="h-60 w-80 mb-8">
               <img
                 src={slider?.imageUrl}
                 alt=""
-                className="w-96 h-full object-fill rounded-md shadow-md shadow-green-100 my-5"
+                className="w-full h-full object-contain rounded-md shadow-md shadow-green-100 my-5"
               />
             </div>
-            <span className="text-xl text-emerald-400 font-sans justify-center flex items-center text-center font-normal px-5">
+            <span className="text-xl text-emerald-600 font-sans justify-center flex items-center text-center font-normal px-5">
               {" 👋 "}
               {slider?.text}
             </span>
@@ -76,20 +77,17 @@ const Dashboard = () => {
       </div>
 
       {/* Study material  */}
-      <div className="w-full  mt-10 flex justify-between">
-        <span className="text-xl font-medium font-sans text-emerald-600 ">
+      <div className="w-full  mt-10 flex justify-between ">
+        <span className="lg:text-xl xs:text-lg md:text-lg font-medium font-sans text-emerald-600 ">
           📚 Study Material
         </span>
-        <CommonButton
-          link="/allstudy"
-          color="secondary"
-          width={150}
-          height={40}
-        >
-          Show More...
-        </CommonButton>
+        <Link to="/allstudy">
+          <CommonButton color="secondary" width={130} height={40}>
+            Show More
+          </CommonButton>
+        </Link>
       </div>
-      <div className="grid lg:grid-cols-4 gap-5 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-2 mt-3">
+      <div className="grid lg:grid-cols-4 gap-4 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-2 mt-3">
         {study?.slice(0, 8).map((study, i) => (
           <Card
             key={i}
@@ -103,20 +101,17 @@ const Dashboard = () => {
 
       {/* popular quiz category */}
       <div className="w-full  mt-10 flex justify-between">
-        <span className="text-xl font-medium font-sans text-emerald-600 ">
-          ⭐ Popular Quiz Category
+        <span className="lg:text-xl xs:text-lg md:text-lg font-medium font-sans text-emerald-600 ">
+          ⭐ Popular Quiz 
         </span>
-        <CommonButton
-          link="/category"
-          color="secondary"
-          width={150}
-          height={40}
-        >
-          Show More...
-        </CommonButton>
+        <Link to="/allstudy">
+          <CommonButton color="secondary" width={130} height={40}>
+            Show More
+          </CommonButton>
+        </Link>
       </div>
       <div className="grid lg:grid-cols-4 gap-5 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-2 mt-3">
-        {data?.slice(0,8).map((item) => (
+        {data?.slice(0, 8).map((item) => (
           <Card
             title={item?.cat_name}
             number={""}

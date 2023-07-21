@@ -47,7 +47,7 @@ const Signin = () => {
   };
 
   return (
-    <div className="h-[100vh] bg-indigo-50 flex flex-col justify-center items-center ">
+    <div className="lg:h-[100vh] md:h-[80vh] lg:bg-indigo-50 flex flex-col justify-center items-center ">
       <div className="  flex-row hidden lg:flex">
         <div className="
         bg-gradient-to-r from-emerald-400 via-emerald-500 to-yellow-300 hover:from-yellow-300
@@ -189,7 +189,7 @@ const Signin = () => {
         </div>
       </div>
 
-      <div className=" lg:hidden bg-white w-96 px-4 py-8  shadow-md rounded-lg  hover:shadow-lg">
+      <div className=" lg:hidden bg-white  px-6 py-8 mt-5 shadow-md rounded-lg  hover:shadow-lg">
        
         <div className="  flex justify-center items-center w-full mb-5">
           <div className="w-20 h-20 rounded-md ">

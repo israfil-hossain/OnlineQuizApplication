@@ -7,23 +7,26 @@ const Card = ({ image, title, number, title2, link, desc, disabled }) => {
     return (
       <Link to={link}>
         <motion.div
-          className="cursor-pointer transition duration-500 ease-in-out rounded-lg bg-white h-auto items-center text-center justify-center  flex flex-col  
-          shadow-md bg-opacity-40 backdrop-filter backdrop-blur-sm border border-emerald-100 hover:shadow-md hover:shadow-emerald-100"
+          className="
+          bg-gradient-to-r from-white via-indigo-100 to-gray-50
+          cursor-pointer transition duration-500 ease-in-out rounded-lg bg-white h-auto items-center text-center justify-center  flex flex-col  
+          shadow-md  backdrop-filter backdrop-blur-sm border border-emerald-100 hover:shadow-md hover:shadow-emerald-100"
           whileHover={{ scale: 1.02 }}
         >
-          <div className="flex p-1 justify-center items-center rounded-md xs:h-24 sm:h-24 md:h-32 lg:h-36 sm:w-40 xs:w-40 lg:w-64 lg:mt-3  mb-5">
+          <div className="flex justify-center items-center rounded-md xs:h-24 sm:h-24 md:h-32 lg:h-36 w-full mb-1">
             <img
               src={image}
               alt=""
-              className="w-full h-full rounded-lg object-fill p-2"
+              className="w-full h-full rounded-lg object-fill"
             />
           </div>
-          <div className="pb-2  flex flex-col h-20 mb-2">
-            <span className="text-emerald-600 font-sans font-medium lg:text-[16px] xs:text-[12px] sm:text-[12px] md:text-[12px]">
+          <div className=" w-full border-b-2 border-solid border-slate-50 py-1"></div>
+          <div className="p-2  flex flex-col h-auto mb-2">
+            <span className="text-emerald-500 font-sans font-bold lg:text-[16px] xs:text-[14px] sm:text-[14px] md:text-[14px]">
               {title}
             </span>
 
-            <span className="text-emerald-600 lg:text-md xs:text-sm mt-2">
+            <span className="text-emerald-500 text-[12px] py-2">
               🌟 {number} {title2}
             </span>
             {desc ? (
@@ -46,24 +49,24 @@ const Card = ({ image, title, number, title2, link, desc, disabled }) => {
     >
       <motion.div
         className={`cursor-pointer transition duration-500 ease-in-out rounded-lg bg-white h-auto items-center text-center justify-center  flex flex-col  
-      shadow-md bg-opacity-40 backdrop-filter backdrop-blur-sm border border-emerald-100 hover:shadow-md hover:shadow-emerald-700 ${
-        disabled ? "opacity-50 pointer-events-none bg-gray-900" : ""
+        shadow-md  backdrop-filter backdrop-blur-sm border border-emerald-100 hover:shadow-md hover:shadow-emerald-700 ${
+        disabled ? "opacity-60 pointer-events-none bg-gray-600" : ""
       }`}
         whileHover={{ scale: 1.02 }}
       >
-        <div className="flex p-1 justify-center items-center rounded-md xs:h-24 sm:h-24 md:h-32 lg:h-36 sm:w-40 xs:w-40 lg:w-64 lg:mt-3  mb-5">
+        <div className="flex justify-center items-center rounded-md xs:h-24 sm:h-24 md:h-32 lg:h-36 w-full mb-1">
           <img
             src={image}
             alt=""
-            className="w-full h-full rounded-lg object-fill p-2"
+            className="w-full h-full rounded-lg object-fill"
           />
         </div>
         <div className="pb-2  flex flex-col h-20 mb-2">
-          <span className="text-emerald-800 font-sans font-medium lg:text-[16px] xs:text-[12px] sm:text-[12px] md:text-[12px]">
+          <span className="text-gray-200 font-sans font-medium lg:text-[18px] xs:text-[14px] sm:text-[14px] md:text-[14px]">
             {title}
           </span>
 
-          <span className="text-emerald-500 text-md ">
+          <span className="text-gray-300 text-[14px] ">
             🌟 {number} {title2}
           </span>
           {desc ? (

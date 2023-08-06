@@ -89,8 +89,8 @@ const Sidebar = () => {
         <Link to="/">
           <div className="flex items-center gap-2.5 font-medium border-b py-3 border-slate-300  mx-3 z-50 bg-white">
             <img src={logo} width={45} alt="logo" />
-            <span className="text-3xl text-emerald-500 font-sans font-bold ">
-              MRCS
+            <span className="text-2xl text-emerald-500 font-sans font-bold ">
+              MRCS AID
             </span>
           </div>
         </Link>
@@ -117,7 +117,7 @@ const Sidebar = () => {
             <li>
               <NavLink to={"/allquiz"} className="link text-green-400">
                 <MdOutlineQuiz size={23} className="min-w-max text-green-300" />
-                Quiz
+                Mock Test
               </NavLink>
             </li>
             {location.pathname.startsWith("/questions") && (

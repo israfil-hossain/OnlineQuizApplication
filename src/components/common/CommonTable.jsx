@@ -28,6 +28,10 @@ const CommonTable = ({ columns, data, typeData, fetchData, id, isLoading }) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+
+  const handleReload =(item)=>{
+    console.log("Id ===> ",item)
+  }
   return (
     <>
       {isLoading ? (
@@ -191,9 +195,11 @@ const CommonTable = ({ columns, data, typeData, fetchData, id, isLoading }) => {
                               <MdVisibility style={{ color: "green" }} />
                             </IconButton>
                           </Link>
-                          <IconButton aria-label="edit">
+                          <Link to={`/questions?id=${item?.quizName}`}>
+                          <IconButton aria-label="edit" onClick={handleReload(item)}>
                             <AiOutlineReload style={{ color: "blue" }} />
                           </IconButton>
+                          </Link>
                         </div>
                       </Stack>
                     </TableCell>

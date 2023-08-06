@@ -34,6 +34,14 @@ const Questions = () => {
   const userid = localStorage.getItem("userid");
   const username = localStorage.getItem("username");
 
+  function shuffleArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+  }
+
   const handleClose = () => setOpen(false);
 
   const handleValueChange = (questionId, selectedValue) => {
@@ -104,7 +112,8 @@ const Questions = () => {
       setIsLoading2(true);
       try {
         const response = await API.get(`/questions/questionbyquiz?quiz=${id}`);
-        setQuestions(response.data);
+        const shuffledArray = shuffleArray([...response.data]);
+        setQuestions(shuffledArray);
         setIsLoading2(false);
       } catch (error) {
         console.error("Error fetching questions:", error);
@@ -144,7 +153,7 @@ const Questions = () => {
         <CommonProgress />
       ) : (
         <div>
-          {questions ? (
+          {questions && questions.length > 1 ? (
             <div className="mx-1">
               {questions.map((question, index) => (
                 <Card
@@ -155,6 +164,7 @@ const Questions = () => {
                     "@media screen and (min-width: 768px)": {
                       maxWidth: "80%",
                     },
+                    padding:"12px"
                   }}
                   key={question._id}
                 >
@@ -164,7 +174,7 @@ const Questions = () => {
                         <BsPatchQuestionFill className="mx-2 text-emerald-500 w-6 h-6" />
                         {index + 1}{"."}
                       </div>
-                      <span className="text-[16px] pl-5 font-sans font-medium  text-justify">
+                      <span className="text-[16px] px-5  font-sans font-medium ">
                         {question.question_name}
                       </span>
                     </div>

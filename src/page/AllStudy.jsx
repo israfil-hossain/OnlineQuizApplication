@@ -2,6 +2,7 @@
 import React, { useEffect, useState } from "react";
 import { Box, Breadcrumbs } from "@mui/material";
 import { Link } from "react-router-dom";
+import ShuffleArray  from "../constants/ShuffleArray";
 
 //Internal Import
 import PackageBreadcrumb from "../components/common/PackageBreadcrumb";
@@ -20,7 +21,8 @@ const AllStudy = () => {
     const fetchData = async () => {
       try {
         const res = await StudyService.getStudy();
-        setData(res.data);
+        const suffleData = ShuffleArray(res.data)
+        setData(suffleData);
         setIsLoading(false);
       } catch (error) {
         setIsLoading(false);

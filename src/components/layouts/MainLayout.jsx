@@ -19,7 +19,7 @@ const MainLayout = ({ children }) => {
         </main>
         <footer className="bg-emerald-50 ">
           <div className="flex justify-center items-center py-2">
-            <span>All Rights Reseved by MRCSAID </span>
+            <span>All Rights Reserved by MRCS AID </span>
           </div>
         </footer>
         {/*  */}

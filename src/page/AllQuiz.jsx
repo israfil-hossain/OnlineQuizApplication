@@ -11,6 +11,8 @@ import QuizService from "../service/QuizService";
 import Card from "../components/common/Card";
 import UserService from "../service/UserService";
 import { CommonProgress } from "../components/common/CommonProgress";
+import ShuffleArray  from "../constants/ShuffleArray";
+
 
 const AllQuiz = () => {
   const [data, setData] = useState([]);
@@ -23,7 +25,8 @@ const AllQuiz = () => {
     const fetchData = async () => {
       try {
         const res = await QuizService.getQuiz();
-        setData(res.data);
+        const suffleData = ShuffleArray(res.data);
+        setData(suffleData);
         setIsLoading(false); // After fetching data, set isLoading to false
       } catch (error) {
         // Handle any error that might occur during data fetching
@@ -53,7 +56,7 @@ const AllQuiz = () => {
           <Link underline="hover" color="grey" href="/category">
             <Box sx={{ justifyContent: "center", display: "flex" }}>
               <MdOutlineQuiz size={23} className="min-w-max text-emerald-500" />
-              <span className="text-emerald-400 ">&nbsp;All Quiz </span>
+              <span className="text-emerald-400 ">&nbsp;All Mock Test </span>
             </Box>
           </Link>
         </Breadcrumbs>

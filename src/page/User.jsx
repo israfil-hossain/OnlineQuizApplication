@@ -17,7 +17,7 @@ import AddUser from "../components/Users/AddUser";
 import ChangePassword from "../components/Users/ChangePassword";
 const User = () => {
   const userid = localStorage.getItem("userid");
-  
+
   const [selectedImage, setSelectedImage] = useState(null);
   const [data, setData] = useState([]);
 
@@ -28,15 +28,31 @@ const User = () => {
   const handlePOpen = () => setPopen(true);
   const handlePClose = () => setPopen(false);
 
-  // Fetch User Data
-  useEffect(() => {
-    fetchData(userid);
-  }, [userid]);
-
-  const fetchData = async () => {
-    const res = await UserService.getSingleUser(userid);
-    setData(res.data);
+  // Define the fetchData function outside the useEffect hook
+  const fetchData = async (userId) => {
+    try {
+      const res = await UserService.getSingleUser(userId);
+      return res.data;
+    } catch (error) {
+      // Handle the error here, e.g., log the error or show a user-friendly message.
+      console.error("Error fetching user data:", error);
+      throw error; // Re-throw the error to allow the caller to handle it if needed.
+    }
   };
+
+  // Inside your functional component
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const userData = await fetchData(userid);
+        setData(userData);
+      } catch (error) {
+        // Handle the error here or display an error message to the user.
+      }
+    };
+
+    getUserData(); // Call the function to fetch and update user data
+  }, [userid]);
 
   const handleImageUpload = (event) => {
     const file = event.target.files[0];

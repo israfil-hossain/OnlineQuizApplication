@@ -84,7 +84,7 @@ const Dashboard = () => {
           </CommonButton>
         </Link>
       </div>
-      <div className="grid lg:grid-cols-4 gap-4 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-2 mt-3">
+      <div className="grid lg:grid-cols-5 gap-6 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-2 mt-3">
         {study?.slice(0, 8).map((study, i) => (
           <Card
             key={i}
@@ -99,15 +99,15 @@ const Dashboard = () => {
       {/* popular quiz category */}
       <div className="w-full  mt-10 flex justify-between">
         <span className="lg:text-xl xs:text-lg md:text-lg font-medium font-sans text-emerald-600 ">
-          ⭐ Popular Quiz 
+          ⭐ Popular Mock Test 
         </span>
-        <Link to="/allstudy">
+        <Link to="/allquiz">
           <CommonButton color="secondary" width={130} height={40}>
             Show More
           </CommonButton>
         </Link>
       </div>
-      <div className="grid lg:grid-cols-4 gap-5 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-2 mt-3">
+      <div className="grid lg:grid-cols-5 gap-6 md:grid-cols-2 sm:grid-cols-2 xs:grid-cols-2 mt-3">
         {data?.slice(0, 8).map((item) => (
           <Card
             title={item?.cat_name}

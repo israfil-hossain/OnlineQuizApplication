@@ -35,7 +35,7 @@ const Quiz = () => {
               size={23}
               className="min-w-max text-emerald-700"
             />
-            <span className="text-emerald-700 ">&nbsp; Quiz </span>
+            <span className="text-emerald-700 ">&nbsp; Mock Test </span>
           </Box>
           {/* <Typography color="grey">sdfgh</Typography> */}
         </Breadcrumbs>

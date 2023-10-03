@@ -110,7 +110,7 @@ const Sidebar = () => {
             <li>
               <NavLink to={"/category"} className="link text-green-400">
                 <BsBoxSeam size={23} className="min-w-max text-green-300" />
-                Category
+                Exam Categories
               </NavLink>
             </li>
 

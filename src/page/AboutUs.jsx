@@ -57,7 +57,7 @@ const AboutUs = () => {
               users.`}
           </span>
         </div>
-        <div className="px-8 py-4 flex flex-col ">
+        <div className="px-8 py-4 flex flex-col pb-10">
           <span className="text-2xl font-medium font-sans py-2 text-emerald-500">
             Future Plan
           </span>
@@ -71,7 +71,7 @@ const AboutUs = () => {
           </span>
         </div>
 
-        <div className="px-8 py-4 flex flex-col ">
+        {/* <div className="px-8 py-4 flex flex-col ">
           <span className="text-3xl font-medium font-sans py-2 text-emerald-500">
           🌟 For Subscription 🌟 
           </span>
@@ -92,7 +92,7 @@ const AboutUs = () => {
           <span className="text-lg font-bold font-sans">N.B. &nbsp;&nbsp;</span>
           <span className="text-xl font-sans">After Send Money You should Send mail by your Name, Email, Batch, Transaction Number. After Confirmation Email You can Access Paid Quiz.  </span>
           </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );

@@ -40,7 +40,7 @@ const Category = () => {
           <Link underline="hover" color="grey" href="/category">
             <Box sx={{ justifyContent: "center", display: "flex" }}>
               <BsBoxSeamFill size={23} className="min-w-max text-emerald-500" />
-              <span className="text-emerald-400 ">&nbsp; All Category </span>
+              <span className="text-emerald-400 ">&nbsp; Exam Categories </span>
             </Box>
           </Link>
           {/* <Typography color="grey">sdfgh</Typography> */}

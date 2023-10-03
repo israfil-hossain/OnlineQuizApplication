@@ -14,11 +14,16 @@ const updateUser = (id,values)=>{
   return API.put(`/users/update/${id}`,values);
 }
 
+const getSubscription = ()=>{
+  return API.get('/subscription');
+}
+
 
 const UserService = { 
   getSingleUser,
   UploadImage,
   updateUser,
+  getSubscription
 };
 
 export default UserService;

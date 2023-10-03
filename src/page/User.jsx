@@ -97,14 +97,14 @@ const User = () => {
           <div className="md:lg:ml-5 py-4 flex justify-center items-center relative">
             {selectedImage ? (
               <img
-                src={selectedImage}
+                src={selectedImage }
                 alt="profileImage"
                 className="w-48 h-48 rounded-full border border-emerald-500"
               />
             ) : (
               <div className="w-48 h-48 rounded-full border border-emerald-500 bg-gray-200 flex justify-center items-center">
                 <img
-                  src={data?.profile}
+                  src={ data?.profile ? data?.profile : "https://res.cloudinary.com/dpc1nydxn/image/upload/w_1000,c_fill,ar_1:1,g_auto,r_max,bo_5px_solid_red,b_rgb:262c35/v1685778058/Flowentech/about2_ap8hdw.jpg" }
                   alt="profileImage"
                   className="w-48 h-48 rounded-full border border-emerald-500"
                 />

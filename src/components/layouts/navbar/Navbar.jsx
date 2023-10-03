@@ -1,6 +1,6 @@
 //Externals import ...............
 import { Popover, List, ListItem } from "@mui/material";
-import React, { useContext, useState } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { FiUser } from "react-icons/fi";
 import { FaUserAlt } from "react-icons/fa";
 import { TbLogout } from "react-icons/tb";
@@ -11,9 +11,13 @@ import { MdMenu } from "react-icons/md";
 import { MenuContext } from "../../../context/MenuContext";
 import AuthService from "../../../service/AuthService";
 import { Link } from "react-router-dom";
+import { logo } from "../../../assets/image";
+import UserService from "../../../service/UserService";
+import PopupModal from "../../common/PopupModal";
 
 const Navbar = () => {
   const { toggleMenu } = useContext(MenuContext);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   const [userAnchorEl, setUserAnchorEl] = useState(null);
 
@@ -29,12 +33,31 @@ const Navbar = () => {
   };
   const profile = localStorage.getItem("profile");
   const token = localStorage.getItem("token");
+  const id = localStorage.getItem("userid");
+  const [usertype, setUsertype] = useState();
+
+  useEffect(() => {
+    const getUserData = async () => {
+      try {
+        const res = await UserService.getSingleUser(id);
+        setUsertype(res?.data?.usertype);
+      } catch (error) {
+        // Handle any error that might occur while fetching user data
+        console.error("Error fetching user data:", error);
+      }
+    };
+    getUserData(id);
+  }, [id]);
+
+  const closeModal = () => {
+    setIsModalOpen(false);
+  };
 
   return (
     <nav
       className={`sticky top-0  bg-gradient-to-r from-emerald-200 via-emerald-500 to-emerald-300 text-white w-full flex items-center justify-between px-2 py-3 md:px-2 shadow-sm `}
     >
-      <div className="flex justify-between w-full">
+      <div className="flex justify-between w-full lg:px-8 xs:px-2 sm:px-3">
         {/* Left Sidebar */}
         <div className="flex items-center">
           <div
@@ -45,13 +68,23 @@ const Navbar = () => {
             <MdMenu className="text-white" />
           </div>
 
-          <div className="lg:text-lg xs:text-md md:text-md text-primary font-bold pl-2">
+          <div className="lg:text-lg xs:text-md md:text-md text-slate-500 font-bold pl-2">
             MRCS AID{" "}
           </div>
         </div>
 
         {/* Right Side */}
         <div className="flex items-center ">
+          {usertype === "unpaid" ? (
+            
+            <button className="py-2 rounded-full px-4 mr-4  bg-gradient-to-r from-pink-500 to-indigo-400 xs:text-sm text-sm font-semibold text-white "
+            onClick={() => setIsModalOpen(true)}>
+             Premium Subscription
+          </button>
+          ) : (
+            ""
+          )}
+
           {/* Profile Button */}
           {token ? (
             <div
@@ -60,14 +93,13 @@ const Navbar = () => {
             >
               {profile ? (
                 <img
-                  src={profile}
+                  src={profile ? profile : logo}
                   alt="Profile"
                   className="w-full h-full rounded-full px-1 py-1 border border-emerald-500"
                 />
               ) : (
-                <FiUser />
+                <FiUser size={24} />
               )}
-              {/* <FiUser /> */}
             </div>
           ) : (
             <div className="flex justify-center items-center w-full lg:mr-5 md:mr-3 sm:mr-2 xs:mr-1 ">
@@ -127,6 +159,9 @@ const Navbar = () => {
             </List>
           </Popover>
         </div>
+        {isModalOpen && (
+          <PopupModal isOpen={isModalOpen} onClose={closeModal} />
+        )}
       </div>
     </nav>
   );

@@ -24,10 +24,12 @@ import QuestionService from "../service/QuestionService";
 import { AiFillCloseCircle } from "react-icons/ai";
 import { BiCheck } from "react-icons/bi";
 
+import Confetti from "react-confetti";
 import { CommonProgress } from "../components/common/CommonProgress";
 
 const ViewResult = () => {
   const { id } = useParams();
+  const [isConfettiActive, setIsConfettiActive] = useState(true);
 
   const [result, setResult] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
@@ -46,6 +48,16 @@ const ViewResult = () => {
 
     fetchResult();
   }, [id]);
+
+  useEffect(() => {
+    // Start a timer to disable the confetti after 3 seconds
+    const timer = setTimeout(() => {
+      setIsConfettiActive(false);
+    }, 15000); // 3000 milliseconds = 3 seconds
+
+    // Clean up the timer when the component unmounts
+    return () => clearTimeout(timer);
+  }, []);
 
   const passingPercentage = 65;
 
@@ -87,6 +99,13 @@ const ViewResult = () => {
         <CommonProgress />
       ) : (
         <>
+          {isConfettiActive && (
+            <Confetti
+              width={window.innerWidth}
+              height={window.innerHeight}
+              recycle={true}
+            />
+          )}
           <div className="w-full  bg-gradient-to-r from-emerald-400 to-teal-300 rounded-md mt-8">
             <div className="flex lg:flex-row md:flex-row sm:flex-row justify-center xs:items-center lg:space-x-16  sm:space-x-8 md:space-x-12 xs:flex-col">
               <img
@@ -136,10 +155,13 @@ const ViewResult = () => {
                     }}
                   >
                     <div className="flex items-center">
-                      
                       <div className="text-[16px] font-sans font-medium  text-start py-5 lg:px-5 flex">
-                        <span className="p-4 flex items-center justify-center rounded-full bg-emerald-600 text-white  mx-2 my-2 w-5 h-5 ">{i + 1}</span>
-                        <span className="pt-2">{items?.questionData?.question_name}</span>
+                        <span className="p-4 flex items-center justify-center rounded-full bg-emerald-600 text-white  mx-2 my-2 w-5 h-5 ">
+                          {i + 1}
+                        </span>
+                        <span className="pt-2">
+                          {items?.questionData?.question_name}
+                        </span>
                       </div>
                     </div>
                     <div className="px-10 ">

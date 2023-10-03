@@ -21,11 +21,10 @@ const Signin = () => {
   };
   const handleSubmit = async (values, { setSubmitting, setErrors }) => {
     setIsLoading(true);
-  
+
     AuthService.signin(values)
       .then((response) => {
         setIsLoading(false);
-     
 
         localStorage.setItem("token", `${response.data.token}`);
         localStorage.setItem("role", `${response.data?.role}`);
@@ -49,11 +48,13 @@ const Signin = () => {
   return (
     <div className="lg:h-[100vh] md:h-[80vh] lg:bg-indigo-50 flex flex-col justify-center items-center ">
       <div className="  flex-row hidden lg:flex">
-        <div className="
+        <div
+          className="
         bg-gradient-to-r from-emerald-400 via-emerald-500 to-yellow-300 hover:from-yellow-300
         hover:via-emerald-400 hover:to-emerald-600 
         
-        py-8 lg:h-[350px]  lg:w-[400px] px-4  sm:rounded-l-lg sm:px-10 shadow-md hover:shadow-lg">
+        py-8 lg:min-h-[350px]  lg:w-[400px] px-4  sm:rounded-l-lg sm:px-10 shadow-md hover:shadow-lg"
+        >
           <div className="mb-6 sm:mx-auto sm:w-full sm:max-w-md flex items-center justify-center">
             <div className="mb-6 sm:mx-auto sm:w-full sm:max-w-md flex items-center justify-center">
               <div className="flex flex-col items-center  text-center justify-between p-8">
@@ -69,7 +70,7 @@ const Signin = () => {
             </div>{" "}
           </div>
         </div>
-        <div className="bg-white py-8 lg:h-[350px]  lg:w-[400px] px-4 shadow-md sm:rounded-r-lg sm:px-10 hover:shadow-lg">
+        <div className="bg-white py-8 lg:min-h-[350px]  lg:w-[400px] px-4 shadow-md sm:rounded-r-lg sm:px-10 hover:shadow-lg">
           <div className="mb-6 sm:mx-auto sm:w-full sm:max-w-md">
             <h2 className="text-center text-3xl font-extrabold text-gray-900">
               Sign In
@@ -154,6 +155,11 @@ const Signin = () => {
                         component="p"
                         className="mt-2 text-sm text-red-600"
                       />
+                      <Link to="/forgotpassword">
+                        <p className="pt-3 text-blue-400 hover:text-blue-700">
+                          forgot password ?
+                        </p>
+                      </Link>
                     </div>
                   </div>
                   <div className="mt-4">
@@ -179,23 +185,21 @@ const Signin = () => {
               )}
             </Formik>
             <div className=" pt-5 ">
-            <Link to="/signup">
-              <span className="font-medium text-yellow-600 hover:text-yellow-700">
-                {"Don't Have an account? please Signup here"}
-              </span>
-            </Link>
-          </div>
+              <Link to="/signup">
+                <span className="font-medium text-yellow-600 hover:text-yellow-700">
+                  {"Don't Have an account? please Signup here"}
+                </span>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
 
       <div className=" lg:hidden bg-white  px-6 py-8 mt-5 shadow-md rounded-lg  hover:shadow-lg">
-       
         <div className="  flex justify-center items-center w-full mb-5">
           <div className="w-20 h-20 rounded-md ">
-          <img src={logo} alt="" className="" />
+            <img src={logo} alt="" className="" />
           </div>
-          
         </div>
         <div className="mb-6 ">
           <h2 className="text-center text-3xl font-extrabold text-gray-900">
@@ -281,6 +285,11 @@ const Signin = () => {
                       component="p"
                       className="mt-2 text-sm text-red-600"
                     />
+                    <Link to="/forgotpassword">
+                      <p className="pt-3 text-blue-400 hover:text-blue-700">
+                        forgot password ?
+                      </p>
+                    </Link>
                   </div>
                 </div>
                 <div className="mt-4">
@@ -313,9 +322,8 @@ const Signin = () => {
             </Link>
           </div>
         </div>
-        </div>
       </div>
-    
+    </div>
   );
 };
 

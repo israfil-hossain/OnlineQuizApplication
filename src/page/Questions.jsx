@@ -88,7 +88,9 @@ const Questions = () => {
 
       if (!allQuestionsAnswered) {
         // You can show an error message or highlight the unanswered questions
-        alert("Please make sure fill-up every question answer, otherwise you can't Submit");
+        alert(
+          "Please make sure fill-up every question answer, otherwise you can't Submit"
+        );
         setIsLoading(false);
         return;
       } else {
@@ -100,7 +102,6 @@ const Questions = () => {
         } else {
           console.log("Something went wrong");
         }
-      
       }
     } catch (err) {
       console.log("Error", err);
@@ -146,6 +147,10 @@ const Questions = () => {
             </Box>
           </Link>
           <Typography color="grey">{id}</Typography>
+          <Typography>
+            {"Total Questions : "}
+            {questions.length}
+          </Typography>
         </Breadcrumbs>
       </PackageBreadcrumb>
 
@@ -164,20 +169,17 @@ const Questions = () => {
                     "@media screen and (min-width: 768px)": {
                       maxWidth: "80%",
                     },
-                    padding:"12px"
+                    padding: "12px",
                   }}
                   key={question._id}
                 >
-                  <div className="m-5 ">
-                    <div className="flex items-center ">
-                      <div style={{ width: "50px", height: "20px", display:"flex"}}>
-                        <BsPatchQuestionFill className="mx-2 text-emerald-500 w-6 h-6" />
-                        {index + 1}{"."}
-                      </div>
-                      <span className="text-[16px] px-5  font-sans font-medium ">
-                        {question.question_name}
-                      </span>
-                    </div>
+                  <div className="text-[16px] font-sans font-medium  text-start py-5 lg:px-5 flex">
+                    <span className="p-4 flex items-center justify-center rounded-full bg-emerald-600 text-white  mx-2 my-2 w-5 h-5 ">
+                      {index + 1}
+                    </span>
+                    <span className="pt-2">
+                      {question.question_name}
+                    </span>
                   </div>
                   {question.image ? (
                     <div className="flex justify-center w-full h-48">

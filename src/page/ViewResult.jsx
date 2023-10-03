@@ -35,9 +35,9 @@ const ViewResult = () => {
   useEffect(() => {
     const fetchResult = async () => {
       try {
+        setIsLoading(true);
         const response = await QuestionService.getResultbyId(id);
         setResult(response.data);
-        setIsLoading(true);
       } catch (error) {
         console.error("Error fetching questions:", error);
       }
@@ -127,129 +127,130 @@ const ViewResult = () => {
             {result?.results?.map((items, i) => (
               <div key={i}>
                 <div key={items?.questionData?._id}>
-                  <Card sx={{ maxWidth: "90%", margin: "auto", marginTop: 5 , padding:"12px"}}>
-                 
-                    <div className="flex items-center ">
-                      <div
-                        style={{
-                          width: "50px",
-                          height: "20px",
-                          display: "flex",
-                        }}
-                      >
-                        <BsPatchQuestionFill className="mx-2 text-emerald-500 w-6 h-6" />
-                        {i + 1}
-                        {"."}
+                  <Card
+                    sx={{
+                      maxWidth: "90%",
+                      margin: "auto",
+                      marginTop: 5,
+                      padding: "12px",
+                    }}
+                  >
+                    <div className="flex items-center">
+                      
+                      <div className="text-[16px] font-sans font-medium  text-start py-5 lg:px-5 flex">
+                        <span className="p-4 flex items-center justify-center rounded-full bg-emerald-600 text-white  mx-2 my-2 w-5 h-5 ">{i + 1}</span>
+                        <span className="pt-2">{items?.questionData?.question_name}</span>
                       </div>
-                      <span className="text-[18px] px-4 pt-5 font-sans font-medium  text-justify">
-                        {items?.questionData?.question_name}
-                      </span>
                     </div>
-                    {items?.image ? (
-                      <div className="flex justify-center items-center w-full h-48">
-                        <div className="w-64 h-52 rounded-md">
-                          <img
-                            src={items?.questionData?.image}
-                            alt=""
-                            className="w-full h-full object-contain rounded-lg "
-                          />
-                        </div>
-                      </div>
-                    ) : (
-                      ""
-                    )}
-
-                    <div className="w-full py-5">
-                      <FormControl component="fieldset">
-                        <RadioGroup
-                          aria-label={`question_${items?.questionData?._id}`}
-                          name={`question_${items?.questionData?._id}`}
-                          value={
-                            Array.isArray(items)
-                              ? items.find(
-                                  (item) =>
-                                    item?.question === items?.questionData?._id
-                                )?.selected_value || ""
-                              : ""
-                          }
-                        >
-                          <div className="grid lg:grid-cols-2 xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 w-full gap-5">
-                            {Object.entries(items?.questionData?.options[0])
-                              .filter(([key]) => key.startsWith("option_"))
-                              .map(([key, value], optionIndex) => {
-                                const isSelect = key === items?.selected_value;
-
-                                const isAnswer =
-                                  key === items?.questionData?.answer;
-
-                                return (
-                                  <div
-                                    key={optionIndex}
-                                    className={`border-2 border-green-200  px-4 xs:w-[250px] sm:w-[260px] md:[270px] lg:w-[350px] rounded-md mx-5 ${
-                                      isAnswer ? "bg-green-300" : "bg-red-100"
-                                    }`}
-                                  >
-                                    <FormControlLabel
-                                      value={key}
-                                      control={
-                                        <Radio
-                                          sx={{ color: "#6c63ff" }}
-                                          checked={isSelect}
-                                        />
-                                      }
-                                      label={
-                                        <Box
-                                          sx={{
-                                            display: "flex",
-                                            alignItems: "center",
-                                            justifyContent: "space-between",
-                                            width: "100%",
-                                          }}
-                                        >
-                                          <Typography>{value}</Typography>
-                                          {isSelect && (
-                                            <div>
-                                              {isSelect === isAnswer ? (
-                                                <BiCheck className="text-emerald-500 ml-5 w-5 h-5" />
-                                              ) : (
-                                                <AiFillCloseCircle className="text-red-500 ml-5 w-5 h-5 " />
-                                              )}
-                                            </div>
-                                          )}
-                                        </Box>
-                                      }
-                                    />
-                                  </div>
-                                );
-                              })}
+                    <div className="px-10 ">
+                      {items?.image ? (
+                        <div className="flex justify-center items-center w-full h-48">
+                          <div className="w-64 h-52 rounded-md">
+                            <img
+                              src={items?.questionData?.image}
+                              alt=""
+                              className="w-full h-full object-contain rounded-lg "
+                            />
                           </div>
-                        </RadioGroup>
-                      </FormControl>
-                    </div>
-
-                    <div className="px-5 pt-2 ">
-                      <span className="font-sans font-medium  text-md text-emerald-600 ">
-                        Description :
-                      </span>
-
-                      {items?.questionData?.answer &&
-                      items?.questionData?.answer in
-                        items?.questionData?.options ? (
-                        <span>
-                          {
-                            items?.questionData?.options[
-                              items?.questionData?.answer
-                            ]
-                          }
-                        </span>
+                        </div>
                       ) : (
-                        <span></span>
+                        ""
                       )}
-                    </div>
-                    <div className="px-5 py-3">
-                      <span className="text-md font-sans font-normal">
-                        💡 {items?.questionData?.qus_description}
-                      </span>
+
+                      <div className="w-full py-5">
+                        <FormControl component="fieldset">
+                          <RadioGroup
+                            aria-label={`question_${items?.questionData?._id}`}
+                            name={`question_${items?.questionData?._id}`}
+                            value={
+                              Array.isArray(items)
+                                ? items.find(
+                                    (item) =>
+                                      item?.question ===
+                                      items?.questionData?._id
+                                  )?.selected_value || ""
+                                : ""
+                            }
+                          >
+                            <div className="grid lg:grid-cols-2 xl:grid-cols-3 md:grid-cols-2 sm:grid-cols-1 xs:grid-cols-1 w-full gap-5">
+                              {Object.entries(items?.questionData?.options[0])
+                                .filter(([key]) => key.startsWith("option_"))
+                                .map(([key, value], optionIndex) => {
+                                  const isSelect =
+                                    key === items?.selected_value;
+
+                                  const isAnswer =
+                                    key === items?.questionData?.answer;
+
+                                  return (
+                                    <div
+                                      key={optionIndex}
+                                      className={`border-2 border-green-200  px-4 xs:w-[250px] sm:w-[260px] md:[270px] lg:w-[350px] rounded-md mx-5 ${
+                                        isAnswer ? "bg-green-300" : "bg-red-100"
+                                      }`}
+                                    >
+                                      <FormControlLabel
+                                        value={key}
+                                        control={
+                                          <Radio
+                                            sx={{ color: "#6c63ff" }}
+                                            checked={isSelect}
+                                          />
+                                        }
+                                        label={
+                                          <Box
+                                            sx={{
+                                              display: "flex",
+                                              alignItems: "center",
+                                              justifyContent: "space-between",
+                                              width: "100%",
+                                            }}
+                                          >
+                                            <Typography>{value}</Typography>
+                                            {isSelect && (
+                                              <div>
+                                                {isSelect === isAnswer ? (
+                                                  <BiCheck className="text-emerald-500 ml-5 w-5 h-5" />
+                                                ) : (
+                                                  <AiFillCloseCircle className="text-red-500 ml-5 w-5 h-5 " />
+                                                )}
+                                              </div>
+                                            )}
+                                          </Box>
+                                        }
+                                      />
+                                    </div>
+                                  );
+                                })}
+                            </div>
+                          </RadioGroup>
+                        </FormControl>
+                      </div>
+
+                      <div className="px-5 pt-2 ">
+                        <span className="font-sans font-medium  text-md text-emerald-600 ">
+                          Description :
+                        </span>
+
+                        {items?.questionData?.answer &&
+                        items?.questionData?.answer in
+                          items?.questionData?.options ? (
+                          <span>
+                            {
+                              items?.questionData?.options[
+                                items?.questionData?.answer
+                              ]
+                            }
+                          </span>
+                        ) : (
+                          <span></span>
+                        )}
+                      </div>
+                      <div className="px-5 py-3">
+                        <span className="text-md font-sans font-normal">
+                          💡 {items?.questionData?.qus_description}
+                        </span>
+                      </div>
                     </div>
                   </Card>
                 </div>

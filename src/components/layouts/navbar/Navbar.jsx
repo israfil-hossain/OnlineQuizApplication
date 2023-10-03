@@ -11,9 +11,10 @@ import { MdMenu } from "react-icons/md";
 import { MenuContext } from "../../../context/MenuContext";
 import AuthService from "../../../service/AuthService";
 import { Link } from "react-router-dom";
-import { logo } from "../../../assets/image";
+
 import UserService from "../../../service/UserService";
 import PopupModal from "../../common/PopupModal";
+import { logo } from "../../../assets/image";
 
 const Navbar = () => {
   const { toggleMenu } = useContext(MenuContext);
@@ -35,12 +36,14 @@ const Navbar = () => {
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("userid");
   const [usertype, setUsertype] = useState();
+  console.log("User tyep", usertype)
 
   useEffect(() => {
     const getUserData = async () => {
       try {
         const res = await UserService.getSingleUser(id);
-        setUsertype(res?.data?.usertype);
+        console.log("===>res",res.data);
+        setUsertype(res?.data);
       } catch (error) {
         // Handle any error that might occur while fetching user data
         console.error("Error fetching user data:", error);
@@ -75,7 +78,7 @@ const Navbar = () => {
 
         {/* Right Side */}
         <div className="flex items-center ">
-          {usertype === "unpaid" ? (
+          {usertype?.usertype === "unpaid" ? (
             
             <button className="py-2 rounded-full px-4 mr-4  bg-gradient-to-r from-pink-500 to-indigo-400 xs:text-sm text-sm font-semibold text-white "
             onClick={() => setIsModalOpen(true)}>
@@ -93,9 +96,9 @@ const Navbar = () => {
             >
               {profile ? (
                 <img
-                  src={profile ? profile : logo}
+                  src={usertype?.profile ? usertype?.profile : logo}
                   alt="Profile"
-                  className="w-full h-full rounded-full px-1 py-1 border border-emerald-500"
+                  className=" rounded-full border border-emerald-500"
                 />
               ) : (
                 <FiUser size={24} />

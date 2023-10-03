@@ -11,7 +11,7 @@ function CommonButton(props) {
       
       className={className}
       sx={{ width: width, height: height,color:"white",fontWeight:"medium",
-        borderRadius: 'md',
+        borderRadius: "50px",
         '&:hover': {
           bgcolor: 'primary.main',
         },}}

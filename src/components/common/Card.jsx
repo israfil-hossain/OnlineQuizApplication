@@ -3,7 +3,16 @@ import { motion } from "framer-motion";
 import { Link } from "react-router-dom";
 import PopupModal from "./PopupModal";
 
-const Card = ({ image, title, number, title2, link, desc, disabled,height }) => {
+const Card = ({
+  image,
+  title,
+  number,
+  title2,
+  link,
+  desc,
+  disabled,
+  height,
+}) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const closeModal = () => {
@@ -13,25 +22,25 @@ const Card = ({ image, title, number, title2, link, desc, disabled,height }) => 
     return (
       <Link to={link}>
         <motion.div
-          className={`cursor-pointer transition duration-500 ease-in-out rounded-lg bg-white h-[250px] items-center text-center justify-center flex flex-col shadow-md backdrop-filter backdrop-blur-sm border
-            border-emerald-200 hover:shadow-md hover:shadow-emerald-300`}
+          className={`cursor-pointer transition max-w-[300px]  duration-500 ease-in-out rounded-lg bg-white h-[250px] items-center text-center justify-center flex flex-col shadow-md backdrop-filter backdrop-blur-sm border
+            border-emerald-200 hover:shadow-sm hover:shadow-emerald-600`}
           whileHover={{ scale: 1.03 }}
         >
-          <div className="flex justify-center items-center rounded-md t w-full mb-1">
+          <div className="pb-4 pt-2 blur-0 flex justify-center items-center rounded-md t w-full mb-1">
             <img
               src={image}
               alt=""
-              className="w-32 h-32 mt-4 border-2 border-s-fuchsia-50 border-gray-400 object-fill rounded-full "
+              className="shadow-sm  shadow-emerald-700 w-32 h-32 mt-4 border-[3px]  border-emerald-700 object-fill rounded-full "
             />
           </div>
-
+          <div className="w-[250px]  border-b-2 border-solid border-slate-200 py-1"></div>
           <div className="p-2  flex flex-col  mb-2 h-[60%]">
-            <div className=" w-full border-b-2 border-solid border-slate-50 py-1"></div>
-            <span className="text-emerald-500 font-sans font-bold lg:text-[16px] xs:text-[14px] sm:text-[14px] md:text-[14px]">
+          
+            <span className="text-emerald-900 font-sans font-bold lg:text-[16px] xs:text-[14px] sm:text-[14px] md:text-[14px]">
               {title}
             </span>
 
-            <span className="text-emerald-500 text-[12px] py-2">
+            <span className="text-black text-[12px] py-2">
               🌟 {number} {title2}
             </span>
             {desc ? (
@@ -56,25 +65,26 @@ const Card = ({ image, title, number, title2, link, desc, disabled,height }) => 
       >
         <motion.div
           className={`cursor-pointer max-w-[300px] 
-      max-h-[350px]  transition duration-500 ease-in-out rounded-lg bg-white h-auto items-center text-center justify-center  flex flex-col  
+          h-[250px]  transition duration-500 ease-in-out rounded-lg bg-white  items-center text-center justify-center  flex flex-col  
       shadow-md  backdrop-filter backdrop-blur-sm border border-red-400 hover:shadow-md hover:shadow-emerald-700 ${
         disabled ? "opacity-60  bg-gray-600" : ""
       }`}
           whileHover={{ scale: 1.02 }}
         >
-          <div className="flex justify-center items-center rounded-md xs:h-24 sm:h-24 md:h-32 lg:min-h-[180px] border-7 border-transparent w-full mb-1">
+           <div className="blur-0 flex justify-center items-center rounded-md t w-full mb-1 pb-4 pt-2">
             <img
               src={image}
               alt=""
-              className="w-full h-full rounded-lg object-fill"
+              className="shadow-sm  shadow-emerald-700 w-32 h-32 mt-4 border-[3px]  border-emerald-700 object-fill rounded-full "
             />
           </div>
-          <div className="pb-2  flex flex-col h-20 mb-2">
-            <span className="text-gray-200 font-sans font-medium lg:text-[18px] xs:text-[14px] sm:text-[14px] md:text-[14px]">
+          <div className=" w-[250px] border-b-2 border-solid border-slate-200 py-1"></div>
+          <div className="p-2  flex flex-col  mb-2 h-[60%]">
+            <span className="text-emerald-900 font-sans font-bold lg:text-[16px] xs:text-[14px] sm:text-[14px] md:text-[14px]">
               {title}
             </span>
 
-            <span className="text-gray-300 text-[14px] ">
+            <span className="text-black text-[12px] py-2">
               🌟 {number} {title2}
             </span>
             {desc ? (

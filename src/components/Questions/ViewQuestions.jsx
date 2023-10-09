@@ -1,4 +1,4 @@
-import React from "react";
+import React,{Fragment} from "react";
 import {
   Backdrop,
   Box,
@@ -31,6 +31,7 @@ const ViewQuestions = ({ open, onClose, id }) => {
   
 
   return (
+    <Fragment>
     <Modal
       aria-labelledby="transition-modal-title"
       aria-describedby="transition-modal-description"
@@ -77,6 +78,7 @@ const ViewQuestions = ({ open, onClose, id }) => {
         </Box>
       </Fade>
     </Modal>
+    </Fragment>
   );
 };
 

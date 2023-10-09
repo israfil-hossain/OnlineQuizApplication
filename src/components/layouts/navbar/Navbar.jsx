@@ -36,13 +36,13 @@ const Navbar = () => {
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("userid");
   const [usertype, setUsertype] = useState();
-  console.log("User tyep", usertype)
+  console.log("User tyep", usertype);
 
   useEffect(() => {
     const getUserData = async () => {
       try {
         const res = await UserService.getSingleUser(id);
-        console.log("===>res",res.data);
+        console.log("===>res", res.data);
         setUsertype(res?.data);
       } catch (error) {
         // Handle any error that might occur while fetching user data
@@ -71,19 +71,20 @@ const Navbar = () => {
             <MdMenu className="text-white" />
           </div>
 
-          <div className="lg:text-lg xs:text-md md:text-md text-slate-500 font-bold pl-2">
+          <div className="lg:text-lg lg:flex hidden xs:text-md md:text-md text-slate-500 font-bold pl-2">
             MRCS AID{" "}
           </div>
         </div>
 
         {/* Right Side */}
         <div className="flex items-center ">
-          {usertype?.usertype === "unpaid" ? (
-            
-            <button className="py-2 rounded-full px-4 mr-4  bg-gradient-to-r from-pink-500 to-indigo-400 xs:text-sm text-sm font-semibold text-white "
-            onClick={() => setIsModalOpen(true)}>
-             Premium Subscription
-          </button>
+          {token && usertype?.usertype === "unpaid" ? (
+            <button
+              className="py-2 rounded-full w-full  px-4 mr-4  bg-gradient-to-r from-pink-500 to-indigo-400 text-[10px] lg:text-[14px] font-semibold text-white "
+              onClick={() => setIsModalOpen(true)}
+            >
+              Premium Subscription
+            </button>
           ) : (
             ""
           )}
@@ -91,14 +92,14 @@ const Navbar = () => {
           {/* Profile Button */}
           {token ? (
             <div
-              className="flex items-center justify-center  h-10 w-10 rounded-full text-white shadow-md hover:shadow-lg hover:shadow-emerald-600 hover:text-indigo-50 transition duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-100 focus:ring-green-500"
+              className="flex items-center justify-center  h-10 w-14 rounded-full text-white shadow-md hover:shadow-lg hover:shadow-emerald-600 hover:text-indigo-50 transition duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-100 focus:ring-green-500"
               onClick={handleUserClick}
             >
               {profile ? (
                 <img
                   src={usertype?.profile ? usertype?.profile : logo}
                   alt="Profile"
-                  className=" rounded-full border border-emerald-500"
+                  className=" rounded-full border border-emerald-500 w-full h-full"
                 />
               ) : (
                 <FiUser size={24} />
@@ -119,7 +120,7 @@ const Navbar = () => {
               </Link>
               <Link to="/signup">
                 <button
-                  className="flex items-center justify-center ml-3  xs:h-9 lg:h-10 md:h-10  lg:w-14 xs:w-10 md:w-12
+                  className="lg:flex hidden items-center justify-center ml-3  xs:h-9 lg:h-10 md:h-10  lg:w-14 xs:w-10 md:w-12
                     xs:text-sm md:text-md lg:text-md
                     bg-gradient-to-r from-gray-400 via-emerald-500 to-purple-500 hover:from-purple-700
                   hover:via-fuchsia-600 hover:to-purple-500 

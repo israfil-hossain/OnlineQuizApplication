@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { Fragment, useEffect, useState } from "react";
 import {
   Box,
   Breadcrumbs,
@@ -126,161 +126,163 @@ const Questions = () => {
   }, [id]);
 
   return (
-    <div>
-      <PackageBreadcrumb>
-        <Breadcrumbs aria-label="breadcrumb">
-          <Link underline="hover" color="grey" to="/allquiz">
-            <Box
-              sx={{
-                justifyContent: "center",
-                display: "flex",
-                color: "green",
-                fontSize: "16px",
-                fontWeight: "600",
-              }}
-            >
-              <BsFillPatchQuestionFill
-                size={23}
-                className="min-w-max text-emerald-500"
-              />
-              &nbsp; Question
-            </Box>
-          </Link>
-          <Typography color="grey">{id}</Typography>
-          <Typography>
-            {"Total Questions : "}
-            {questions.length}
-          </Typography>
-        </Breadcrumbs>
-      </PackageBreadcrumb>
+    <Fragment>
+      <div>
+        <PackageBreadcrumb>
+          <Breadcrumbs aria-label="breadcrumb">
+            <Link underline="hover" color="grey" to="/allquiz">
+              <Box
+                sx={{
+                  justifyContent: "center",
+                  display: "flex",
+                  color: "green",
+                  fontSize: "16px",
+                  fontWeight: "600",
+                }}
+              >
+                <BsFillPatchQuestionFill
+                  size={23}
+                  className="min-w-max text-emerald-500"
+                />
+                &nbsp; Question
+              </Box>
+            </Link>
+            <Typography color="grey">{id}</Typography>
+            <Typography>
+              {"Total Questions : "}
+              {questions.length}
+            </Typography>
+          </Breadcrumbs>
+        </PackageBreadcrumb>
 
-      {isloading2 ? (
-        <CommonProgress />
-      ) : (
-        <div>
-          {questions && questions.length > 1 ? (
-            <div className="mx-1">
-              {questions.map((question, index) => (
-                <Card
-                  sx={{
-                    maxWidth: "100%",
-                    margin: "auto",
-                    marginTop: 5,
-                    "@media screen and (min-width: 768px)": {
-                      maxWidth: "80%",
-                    },
-                    padding: "12px",
-                  }}
-                  key={question._id}
-                >
-                  <div className="text-[16px] font-sans font-medium  text-start py-5 lg:px-5 flex">
-                    <span className="p-4 flex items-center justify-center rounded-full bg-emerald-600 text-white  mx-2 my-2 w-5 h-5 ">
-                      {index + 1}
-                    </span>
-                    <span className="pt-2">
-                      {question.question_name}
-                    </span>
-                  </div>
-                  {question.image ? (
-                    <div className="flex justify-center w-full h-48">
-                      <img src={question.image} alt="" />
+        {isloading2 ? (
+          <CommonProgress />
+        ) : (
+          <div>
+            {questions && questions.length > 1 ? (
+              <div className="mx-1">
+                {questions.map((question, index) => (
+                  <Card
+                    sx={{
+                      maxWidth: "100%",
+                      margin: "auto",
+                      marginTop: 5,
+                      "@media screen and (min-width: 768px)": {
+                        maxWidth: "80%",
+                      },
+                      padding: "12px",
+                    }}
+                    key={question._id}
+                  >
+                    <div className="text-[16px] font-sans font-medium  text-start py-5 lg:px-5 flex">
+                      <span className="p-4 flex items-center justify-center rounded-full bg-emerald-600 text-white  mx-2 my-2 w-5 h-5 ">
+                        {index + 1}
+                      </span>
+                      <span className="pt-2">{question.question_name}</span>
                     </div>
-                  ) : (
-                    ""
-                  )}
+                    {question.image ? (
+                      <div className="flex justify-center w-full h-48">
+                        <img src={question.image} alt="" />
+                      </div>
+                    ) : (
+                      ""
+                    )}
 
-                  <div className="w-full py-5 justify-center items-center flex">
-                    <FormControl component="fieldset">
-                      <RadioGroup
-                        className="flex justify-center items-center"
-                        aria-label={`question_${question._id}`}
-                        name={`question_${question._id}`}
-                        value={
-                          items.find(
-                            (item) => item.question_id === question._id
-                          )?.selected_value || ""
-                        }
-                        onChange={(e) =>
-                          handleValueChange(question._id, e.target.value)
-                        }
-                      >
-                        <div className=" justify-center lg:ml-8 items-center flex flex-wrap w-full gap-5 p-2">
-                          {Object.entries(question.options[0])
-                            .filter(([key]) => key.startsWith("option_"))
-                            .map(([key, value], optionIndex) => (
-                              <div
-                                key={optionIndex}
-                                className={`border-2 border-green-200 w-72 px-5 rounded-md mx-5 ${
-                                  items.find(
-                                    (item) =>
-                                      item.question_id === question._id &&
-                                      item.selected_value === key
-                                  )
-                                    ? "bg-green-50"
-                                    : ""
-                                }`}
-                              >
-                                <FormControlLabel
-                                  value={key}
-                                  control={<Radio sx={{ color: "#6c63ff" }} />}
-                                  label={
-                                    <Box
-                                      sx={{
-                                        display: "flex",
-                                        alignItems: "center",
-                                        justifyContent: "space-between",
-                                        width: "100%",
-                                        textAlign: "start",
-                                      }}
-                                    >
-                                      <Typography
+                    <div className="w-full py-5 justify-center items-center flex">
+                      <FormControl component="fieldset">
+                        <RadioGroup
+                          className="flex justify-center items-center"
+                          aria-label={`question_${question._id}`}
+                          name={`question_${question._id}`}
+                          value={
+                            items.find(
+                              (item) => item.question_id === question._id
+                            )?.selected_value || ""
+                          }
+                          onChange={(e) =>
+                            handleValueChange(question._id, e.target.value)
+                          }
+                        >
+                          <div className=" justify-center lg:ml-8 items-center flex flex-wrap w-full gap-5 p-2">
+                            {Object.entries(question.options[0])
+                              .filter(([key]) => key.startsWith("option_"))
+                              .map(([key, value], optionIndex) => (
+                                <div
+                                  key={optionIndex}
+                                  className={`border-2 border-green-200 w-72 px-5 rounded-md mx-5 ${
+                                    items.find(
+                                      (item) =>
+                                        item.question_id === question._id &&
+                                        item.selected_value === key
+                                    )
+                                      ? "bg-green-50"
+                                      : ""
+                                  }`}
+                                >
+                                  <FormControlLabel
+                                    value={key}
+                                    control={
+                                      <Radio sx={{ color: "#6c63ff" }} />
+                                    }
+                                    label={
+                                      <Box
                                         sx={{
-                                          fontSize: 14,
-                                          paddingTop: 1,
-                                          paddingBottom: 1,
+                                          display: "flex",
+                                          alignItems: "center",
+                                          justifyContent: "space-between",
+                                          width: "100%",
+                                          textAlign: "start",
                                         }}
                                       >
-                                        {value}
-                                      </Typography>
-                                    </Box>
-                                  }
-                                />
-                              </div>
-                            ))}
-                        </div>
-                      </RadioGroup>
-                    </FormControl>
-                  </div>
-                </Card>
-              ))}
-              <div className="justify-center items-center flex mt-5">
-                <button
-                  className="bg-gradient-to-r from-green-300 via-emerald-500 to-emerald-600 hover:from-emerald-600
+                                        <Typography
+                                          sx={{
+                                            fontSize: 14,
+                                            paddingTop: 1,
+                                            paddingBottom: 1,
+                                          }}
+                                        >
+                                          {value}
+                                        </Typography>
+                                      </Box>
+                                    }
+                                  />
+                                </div>
+                              ))}
+                          </div>
+                        </RadioGroup>
+                      </FormControl>
+                    </div>
+                  </Card>
+                ))}
+                <div className="justify-center items-center flex mt-5">
+                  <button
+                    className="bg-gradient-to-r from-green-300 via-emerald-500 to-emerald-600 hover:from-emerald-600
               hover:via-emerald-400 hover:to-green-300 
                 font-semibold  border px-12 py-2  text-white rounded-full flex "
-                  type="submit"
-                  onClick={handleSubmit}
-                >
-                  {isloading ? (
-                    <>
-                      <Progress />
-                      &nbsp;{" "}
-                    </>
-                  ) : (
-                    "Submit"
-                  )}
-                </button>
+                    type="submit"
+                    onClick={handleSubmit}
+                  >
+                    {isloading ? (
+                      <>
+                        <Progress />
+                        &nbsp;{" "}
+                      </>
+                    ) : (
+                      "Submit"
+                    )}
+                  </button>
+                </div>
+                <ViewQuestions open={open} onClose={handleClose} id={qid} />
               </div>
-              <ViewQuestions open={open} onClose={handleClose} id={qid} />
-            </div>
-          ) : (
-            <div>
-              <NotFound />
-            </div>
-          )}
-        </div>
-      )}
-    </div>
+            ) : (
+              <div>
+                <NotFound />
+              </div>
+            )}
+          </div>
+        )}
+      </div>
+    </Fragment>
   );
 };
 

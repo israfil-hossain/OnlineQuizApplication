@@ -8,6 +8,12 @@ const signup =(values)=>{
   return API.post("/users/adduser",values);
 }
 
+const forgotPassword = (values)=>{
+  return API.post("/auth/forgot-password",values);
+}
+const resetPassword = (token,values)=>{
+  return API.post(`/auth/reset-password/${token}`,values)
+}
 const handleLogout=()=> {
   API.delete("/logout")
     .then((response)=>{
@@ -35,6 +41,8 @@ const AuthService = {
   signin,
   getCurrentUser,
   handleLogout,
-  signup
+  signup,
+  forgotPassword, 
+  resetPassword,
 };
 export default AuthService;

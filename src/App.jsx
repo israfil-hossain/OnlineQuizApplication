@@ -1,22 +1,27 @@
-import React from "react";
+import React, { lazy, Suspense } from "react";
 import { Route, Routes } from "react-router-dom";
-import User from "./page/User";
-import Dashboard from "./page/Dashboard";
-import Category from "./page/Category";
-
-import Signin from "./page/Signin";
-import ProtectedRoute from "./components/protected/ProtectedRoute";
-import AllQuiz from "./page/AllQuiz";
-import Quiz from "./page/Quiz";
-import Results from "./page/Results";
-import Study from "./page/Study";
-import Questions from "./page/Questions";
-import TermsCondition from "./page/TermsCondition";
-import AboutUs from "./page/AboutUs";
-import ViewResult from "./page/ViewResult";
-import AllStudy from "./page/AllStudy";
-import Signup from "./page/Signup";
 import MainLayout from "./components/layouts/MainLayout";
+import { CommonProgress } from "./components/common/CommonProgress";
+import ProtectedRoute from "./components/protected/ProtectedRoute";
+
+const User = lazy(() => import("./page/User"));
+const Dashboard = lazy(() => import("./page/Dashboard"));
+const Category = lazy(() => import("./page/Category"));
+
+const Signin = lazy(() => import("./page/Signin"));
+
+const AllQuiz = lazy(() => import("./page/AllQuiz"));
+const Quiz = lazy(() => import("./page/Quiz"));
+const Results = lazy(() => import("./page/Results"));
+const Study = lazy(() => import("./page/Study"));
+const Questions = lazy(() => import("./page/Questions"));
+const TermsCondition = lazy(() => import("./page/TermsCondition"));
+const AboutUs = lazy(() => import("./page/AboutUs"));
+const ViewResult = lazy(() => import("./page/ViewResult"));
+const AllStudy = lazy(() => import("./page/AllStudy"));
+const Signup = lazy(() => import("./page/Signup"));
+const ForgotPassword = lazy(() => import("./page/ForgotPassword"));
+const ResetPassword = lazy(() => import("./page/ResetPassword"));
 
 const App = () => {
   return (
@@ -26,20 +31,42 @@ const App = () => {
         path="/"
         element={
           <MainLayout>
-            <Dashboard />
+            <Suspense fallback={<CommonProgress />}>
+              <Dashboard />
+            </Suspense>
           </MainLayout>
         }
       />
 
-      <Route path="/login" element={<MainLayout><Signin /></MainLayout>} />
-      <Route path="/signup" element={<MainLayout><Signup /></MainLayout>} />
+      <Route
+        path="/login"
+        element={
+          <MainLayout>
+            <Suspense fallback={<CommonProgress />}>
+              <Signin />
+            </Suspense>
+          </MainLayout>
+        }
+      />
+      <Route
+        path="/signup"
+        element={
+          <MainLayout>
+            <Suspense fallback={<CommonProgress />}>
+              <Signup />
+            </Suspense>
+          </MainLayout>
+        }
+      />
 
       {/* Study */}
       <Route
         path="/allstudy"
         element={
           <MainLayout>
-            <AllStudy />
+            <Suspense fallback={<CommonProgress />}>
+              <AllStudy />
+            </Suspense>
           </MainLayout>
         }
       />
@@ -47,7 +74,9 @@ const App = () => {
         path="/allstudy/study/:id"
         element={
           <MainLayout>
-            <Study />
+            <Suspense fallback={<CommonProgress />}>
+              <Study />
+            </Suspense>
           </MainLayout>
         }
       />
@@ -57,7 +86,9 @@ const App = () => {
         path="/category"
         element={
           <MainLayout>
-            <Category />
+            <Suspense fallback={<CommonProgress />}>
+              <Category />
+            </Suspense>
           </MainLayout>
         }
       />
@@ -65,7 +96,9 @@ const App = () => {
         path="/category/quiz"
         element={
           <MainLayout>
-            <Quiz />
+            <Suspense fallback={<CommonProgress />}>
+              <Quiz />
+            </Suspense>
           </MainLayout>
         }
       />
@@ -75,7 +108,9 @@ const App = () => {
         path="/allquiz"
         element={
           <MainLayout>
-            <AllQuiz />
+            <Suspense fallback={<CommonProgress />}>
+              <AllQuiz />
+            </Suspense>
           </MainLayout>
         }
       />
@@ -83,7 +118,9 @@ const App = () => {
         path="/allquiz/quiz"
         element={
           <MainLayout>
-            <Quiz />
+            <Suspense fallback={<CommonProgress />}>
+              <Quiz />
+            </Suspense>
           </MainLayout>
         }
       />
@@ -94,7 +131,9 @@ const App = () => {
         element={
           <ProtectedRoute>
             <MainLayout>
-              <Questions />
+              <Suspense fallback={<CommonProgress />}>
+                <Questions />
+              </Suspense>
             </MainLayout>
           </ProtectedRoute>
         }
@@ -106,7 +145,9 @@ const App = () => {
         element={
           <ProtectedRoute>
             <MainLayout>
-              <Results />
+              <Suspense fallback={<CommonProgress />}>
+                <Results />
+              </Suspense>
             </MainLayout>
           </ProtectedRoute>
         }
@@ -116,7 +157,9 @@ const App = () => {
         element={
           <ProtectedRoute>
             <MainLayout>
-              <ViewResult />
+              <Suspense fallback={<CommonProgress />}>
+                <ViewResult />
+              </Suspense>
             </MainLayout>
           </ProtectedRoute>
         }
@@ -128,7 +171,9 @@ const App = () => {
         element={
           <ProtectedRoute>
             <MainLayout>
-              <User />
+              <Suspense fallback={<CommonProgress />}>
+                <User />
+              </Suspense>
             </MainLayout>
           </ProtectedRoute>
         }
@@ -138,7 +183,9 @@ const App = () => {
         element={
           <ProtectedRoute>
             <MainLayout>
-              <User />
+              <Suspense fallback={<CommonProgress />}>
+                <User />
+              </Suspense>
             </MainLayout>
           </ProtectedRoute>
         }
@@ -149,7 +196,9 @@ const App = () => {
         path="/terms"
         element={
           <MainLayout>
-            <TermsCondition />
+            <Suspense fallback={<CommonProgress />}>
+              <TermsCondition />
+            </Suspense>
           </MainLayout>
         }
       />
@@ -157,7 +206,31 @@ const App = () => {
         path="/aboutus"
         element={
           <MainLayout>
-            <AboutUs />
+            <Suspense fallback={<CommonProgress />}>
+              <AboutUs />
+            </Suspense>
+          </MainLayout>
+        }
+      />
+
+      // ForgotPassword & Reset Password 
+      <Route
+        path="/forgotpassword"
+        element={
+          <MainLayout>
+            <Suspense fallback={<CommonProgress />}>
+             <ForgotPassword />
+            </Suspense>
+          </MainLayout>
+        }
+      />
+      <Route
+        path="/reset-password/:token"
+        element={
+          <MainLayout>
+            <Suspense fallback={<CommonProgress />}>
+             <ResetPassword />
+            </Suspense>
           </MainLayout>
         }
       />

@@ -1,5 +1,5 @@
 //External Import
-import React, { useEffect, useState } from "react";
+import React, {Fragment, useEffect, useState } from "react";
 import { Box, Breadcrumbs } from "@mui/material";
 import { Link } from "react-router-dom";
 
@@ -50,6 +50,7 @@ const AllQuiz = () => {
   }, [id]);
 
   return (
+    <Fragment>
     <div>
       <PackageBreadcrumb>
         <Breadcrumbs aria-label="breadcrumb">
@@ -82,6 +83,7 @@ const AllQuiz = () => {
         </div>
       )}
     </div>
+    </Fragment>
   );
 };
 

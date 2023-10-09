@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, {Fragment, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import {
   Backdrop,
@@ -111,6 +111,7 @@ const AddUser = ({ open, onClose, data, fetchData }) => {
   };
 
   return (
+    <Fragment>
     <Modal
       aria-labelledby="transition-modal-title"
       aria-describedby="transition-modal-description"
@@ -367,6 +368,7 @@ const AddUser = ({ open, onClose, data, fetchData }) => {
         </Box>
       </Fade>
     </Modal>
+    </Fragment>
   );
 };
 

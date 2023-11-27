@@ -47,7 +47,7 @@ const Dashboard = () => {
     const fetchSlider = async () => {
       try {
         const response = await SliderService.getSlider();
-        setSlider(response.data);
+        setSlider(response?.data);
       } catch (error) {
         console.error("Error fetching slider:", error);
       }
@@ -55,7 +55,7 @@ const Dashboard = () => {
     const fetchStudy = async () => {
       try {
         const response = await StudyService.getStudy();
-        setStudy(response.data);
+        setStudy(response?.data);
       } catch (error) {
         console.log("Error fetching study:", error);
       }
@@ -63,7 +63,7 @@ const Dashboard = () => {
     const fetchControl = async () => {
       try {
         const response = await ControlService.getControl();
-        const activeControl = response.data.filter((item) => item.status === "active");
+        const activeControl = response?.data?.filter((item) => item.status === "active");
         setControl(activeControl);
       } catch (error) {
         console.error("Error fetching slider:", error);
@@ -114,7 +114,7 @@ const Dashboard = () => {
                   {control ? control[0]?.subtitle : "If you never try, You will never win"}
                   </span>
                   <br />
-                  <Link to="/allquiz">
+                  <Link to="/examschedule">
                     <button className="py-3 rounded-full px-16  bg-gradient-to-r from-emerald-500 to-indigo-400 text-lg font-bold text-white ">
                       Start
                     </button>
@@ -141,7 +141,7 @@ const Dashboard = () => {
                     <img
                       src={slider?.imageUrl}
                       alt="slider"
-                      className="w-full h-full object-contain rounded-md  my-5"
+                      className="w-full h-full object-contain rounded-3xl"
                     />
                   </div>
                 )}

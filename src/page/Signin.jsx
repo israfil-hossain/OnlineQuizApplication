@@ -42,7 +42,7 @@ const Signin = () => {
       .catch((err) => {
         setIsLoading(false);
         toast.error("Something went Wrong!");
-        console.log("Err => ", err);
+      
       });
   };
 

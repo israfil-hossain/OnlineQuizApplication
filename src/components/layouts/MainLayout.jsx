@@ -13,7 +13,7 @@ const MainLayout = ({ children }) => {
       <Sidebar />
       <div className="flex flex-col w-full overflow-y-auto">
         <Navbar toggleMenu={toggleMenu} />
-        <main className="flex-grow bg-green-50 overflow-y-auto" style={{ opacity:0.8,background: `rgb(248 250 250) url(${background3}) no-repeat  center `, backgroundSize: 'fill' }}>
+        <main className="flex-grow bg-green-50 overflow-y-auto" style={{ opacity:1,background: `rgb(248 250 250) url(${background3}) no-repeat  center `, backgroundSize: 'fill' }}>
           <div className="mx-auto px-5 py-5" >
           {children}
           </div>

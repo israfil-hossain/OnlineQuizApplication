@@ -36,13 +36,11 @@ const Navbar = () => {
   const token = localStorage.getItem("token");
   const id = localStorage.getItem("userid");
   const [usertype, setUsertype] = useState();
-  console.log("User tyep", usertype);
 
   useEffect(() => {
     const getUserData = async () => {
       try {
         const res = await UserService.getSingleUser(id);
-        console.log("===>res", res.data);
         setUsertype(res?.data);
       } catch (error) {
         // Handle any error that might occur while fetching user data
@@ -92,14 +90,14 @@ const Navbar = () => {
           {/* Profile Button */}
           {token ? (
             <div
-              className="flex items-center justify-center  h-10 w-14 rounded-full text-white shadow-md hover:shadow-lg hover:shadow-emerald-600 hover:text-indigo-50 transition duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-100 focus:ring-green-500"
+              className="flex items-center justify-center   rounded-full text-white shadow-md hover:shadow-lg hover:shadow-emerald-600 hover:text-indigo-50 transition duration-150 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-green-100 focus:ring-green-500"
               onClick={handleUserClick}
             >
               {profile ? (
                 <img
                   src={usertype?.profile ? usertype?.profile : logo}
                   alt="Profile"
-                  className=" rounded-full border border-emerald-500 w-full h-full"
+                  className=" rounded-full w-12 h-13 border border-emerald-500 "
                 />
               ) : (
                 <FiUser size={24} />

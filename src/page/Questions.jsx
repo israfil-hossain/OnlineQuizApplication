@@ -82,7 +82,7 @@ const Questions = () => {
       const allQuestionsAnswered = questions.every((question) =>
         items.some(
           (item) =>
-            item.question_id === question._id && item.selected_value !== ""
+            item?.question_id === question._id && item?.selected_value !== ""
         )
       );
 
@@ -150,7 +150,7 @@ const Questions = () => {
             <Typography color="grey">{id}</Typography>
             <Typography>
               {"Total Questions : "}
-              {questions.length}
+              {questions?.length}
             </Typography>
           </Breadcrumbs>
         </PackageBreadcrumb>
@@ -161,7 +161,7 @@ const Questions = () => {
           <div>
             {questions && questions.length > 1 ? (
               <div className="mx-1">
-                {questions.map((question, index) => (
+                {questions?.map((question, index) => (
                   <Card
                     sx={{
                       maxWidth: "100%",
@@ -178,7 +178,7 @@ const Questions = () => {
                       <span className="p-4 flex items-center justify-center rounded-full bg-emerald-600 text-white  mx-2 my-2 w-5 h-5 ">
                         {index + 1}
                       </span>
-                      <span className="pt-2">{question.question_name}</span>
+                      <span className="pt-2">{question?.question_name}</span>
                     </div>
                     {question.image ? (
                       <div className="flex justify-center w-full h-48">
@@ -195,7 +195,7 @@ const Questions = () => {
                           aria-label={`question_${question._id}`}
                           name={`question_${question._id}`}
                           value={
-                            items.find(
+                            items?.find(
                               (item) => item.question_id === question._id
                             )?.selected_value || ""
                           }
@@ -204,16 +204,16 @@ const Questions = () => {
                           }
                         >
                           <div className=" justify-center lg:ml-8 items-center flex flex-wrap w-full gap-5 p-2">
-                            {Object.entries(question.options[0])
+                            {Object.entries(question?.options[0])
                               .filter(([key]) => key.startsWith("option_"))
                               .map(([key, value], optionIndex) => (
                                 <div
                                   key={optionIndex}
                                   className={`border-2 border-green-200 w-72 px-5 rounded-md mx-5 ${
-                                    items.find(
+                                    items?.find(
                                       (item) =>
-                                        item.question_id === question._id &&
-                                        item.selected_value === key
+                                        item?.question_id === question._id &&
+                                        item?.selected_value === key
                                     )
                                       ? "bg-green-50"
                                       : ""

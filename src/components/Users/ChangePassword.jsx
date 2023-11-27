@@ -1,4 +1,4 @@
-import React, {Fragment, useState } from "react";
+import React, { Fragment, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import {
   Backdrop,
@@ -43,8 +43,6 @@ const ChangePassword = ({ open, onClose, data, fetchData }) => {
     setShowPassword((prevState) => !prevState);
   };
 
-
-
   const handleSubmit = async (values, { setSubmitting, setErrors }) => {
     try {
       //api call
@@ -60,14 +58,14 @@ const ChangePassword = ({ open, onClose, data, fetchData }) => {
               acc[key] = errorData.errors[key].msg;
               return acc;
             }, {});
-            console.log(errors);
+
             setErrors(errors);
           }
         } else {
           toast.success("Successfully Add User ");
           onClose();
           fetchData();
-          setIsLoading(false)
+          setIsLoading(false);
         }
         setSubmitting(false);
       }
@@ -80,7 +78,7 @@ const ChangePassword = ({ open, onClose, data, fetchData }) => {
             acc[key] = errorData.errors[key].msg;
             return acc;
           }, {});
-          console.log(errors);
+
           setErrors(errors);
         } else {
           toast.error("Something went wrong");
@@ -90,7 +88,7 @@ const ChangePassword = ({ open, onClose, data, fetchData }) => {
       }
     }
   };
-  
+
   const handleUpdate = async (values, { setSubmitting, setErrors }) => {
     try {
       //api call
@@ -111,70 +109,70 @@ const ChangePassword = ({ open, onClose, data, fetchData }) => {
 
   return (
     <Fragment>
-    <Modal
-      aria-labelledby="transition-modal-title"
-      aria-describedby="transition-modal-description"
-      open={open}
-      onClose={false}
-      closeAfterTransition
-      slots={{ backdrop: Backdrop }}
-      slotProps={{
-        backdrop: {
-          timeout: 500,
-        },
-      }}
-    >
-      <Fade in={open}>
-        <Box sx={style}>
-          <div>
-            <Formik
-              initialValues={{
-                password:"",
-              }}
-              validationSchema={passwordValidationSchema}
-              onSubmit={data ? handleUpdate : handleSubmit}
-            >
-              {({
-                values,
-                handleChange,
-                errors,
-                touched,
-                isSubmitting,
-                resetForm,
-              }) => (
-                <Form>
-                  {/* <>{JSON.stringify(values)}</> */}
-                  <Box
-                    sx={{
-                      pb: 0,
-                      display: "flex",
-                      flexDirection: "row",
-                      justifyContent: "space-between",
-                    }}
-                  >
-                    <Typography variant="h5" component="h5">
-                      Changes Password
-                    </Typography>
-                    <div style={{}}>
-                      <IconButton
-                        aria-label="edit"
-                        onClick={() => handleResetAndClose(resetForm)}
-                      >
-                        <AiOutlineCloseCircle
-                          sx={{
-                            color: "#ff4a68",
-                            height: "22px",
-                            width: "22px",
-                          }}
-                          className="text-red-400 hover:text-600"
-                        />
-                      </IconButton>
-                    </div>
-                  </Box>
-                  <Divider sx={{ mb: 2 }}>
-                    <Chip label="Password" />
-                  </Divider>
-                  
+      <Modal
+        aria-labelledby="transition-modal-title"
+        aria-describedby="transition-modal-description"
+        open={open}
+        onClose={false}
+        closeAfterTransition
+        slots={{ backdrop: Backdrop }}
+        slotProps={{
+          backdrop: {
+            timeout: 500,
+          },
+        }}
+      >
+        <Fade in={open}>
+          <Box sx={style}>
+            <div>
+              <Formik
+                initialValues={{
+                  password: "",
+                }}
+                validationSchema={passwordValidationSchema}
+                onSubmit={data ? handleUpdate : handleSubmit}
+              >
+                {({
+                  values,
+                  handleChange,
+                  errors,
+                  touched,
+                  isSubmitting,
+                  resetForm,
+                }) => (
+                  <Form>
+                    {/* <>{JSON.stringify(values)}</> */}
+                    <Box
+                      sx={{
+                        pb: 0,
+                        display: "flex",
+                        flexDirection: "row",
+                        justifyContent: "space-between",
+                      }}
+                    >
+                      <Typography variant="h5" component="h5">
+                        Changes Password
+                      </Typography>
+                      <div style={{}}>
+                        <IconButton
+                          aria-label="edit"
+                          onClick={() => handleResetAndClose(resetForm)}
+                        >
+                          <AiOutlineCloseCircle
+                            sx={{
+                              color: "#ff4a68",
+                              height: "22px",
+                              width: "22px",
+                            }}
+                            className="text-red-400 hover:text-600"
+                          />
+                        </IconButton>
+                      </div>
+                    </Box>
+                    <Divider sx={{ mb: 2 }}>
+                      <Chip label="Password" />
+                    </Divider>
+
                     <div className="mt-3">
                       <label
                         htmlFor="password"
@@ -216,34 +214,33 @@ const ChangePassword = ({ open, onClose, data, fetchData }) => {
                         />
                       </div>
                     </div>
-               
 
-                  <div className="mt-4">
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
-                    >
-                      <span className="absolute left-0 inset-y-0 flex items-center pl-3">
-                        {isLoading ? (
-                          <Progress />
-                        ) : (
-                          <BiLockAlt
-                            className="h-5 w-5 text-gray-600 group-hover:text-yellow-400"
-                            aria-hidden="true"
-                          />
-                        )}
-                      </span>
-                      Change Password
-                    </button>
-                  </div>
-                </Form>
-              )}
-            </Formik>
-          </div>
-        </Box>
-      </Fade>
-    </Modal>
+                    <div className="mt-4">
+                      <button
+                        type="submit"
+                        disabled={isSubmitting}
+                        className="group relative w-full flex justify-center py-2 px-4 border border-transparent text-sm font-medium rounded-md text-white bg-gray-700 hover:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-yellow-500"
+                      >
+                        <span className="absolute left-0 inset-y-0 flex items-center pl-3">
+                          {isLoading ? (
+                            <Progress />
+                          ) : (
+                            <BiLockAlt
+                              className="h-5 w-5 text-gray-600 group-hover:text-yellow-400"
+                              aria-hidden="true"
+                            />
+                          )}
+                        </span>
+                        Change Password
+                      </button>
+                    </div>
+                  </Form>
+                )}
+              </Formik>
+            </div>
+          </Box>
+        </Fade>
+      </Modal>
     </Fragment>
   );
 };

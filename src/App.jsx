@@ -3,6 +3,7 @@ import { Route, Routes } from "react-router-dom";
 import MainLayout from "./components/layouts/MainLayout";
 import { CommonProgress } from "./components/common/CommonProgress";
 import ProtectedRoute from "./components/protected/ProtectedRoute";
+import ExamSchedule from "./page/ExamSchedule";
 
 const User = lazy(() => import("./page/User"));
 const Dashboard = lazy(() => import("./page/Dashboard"));
@@ -37,7 +38,16 @@ const App = () => {
           </MainLayout>
         }
       />
-
+      <Route
+        path="/examschedule"
+        element={
+          <MainLayout>
+            <Suspense fallback={<CommonProgress />}>
+              <ExamSchedule />
+            </Suspense>
+          </MainLayout>
+        }
+      />
       <Route
         path="/login"
         element={
@@ -58,7 +68,6 @@ const App = () => {
           </MainLayout>
         }
       />
-
       {/* Study */}
       <Route
         path="/allstudy"
@@ -80,7 +89,6 @@ const App = () => {
           </MainLayout>
         }
       />
-
       {/* Category */}
       <Route
         path="/category"
@@ -102,7 +110,6 @@ const App = () => {
           </MainLayout>
         }
       />
-
       {/* Quiz */}
       <Route
         path="/allquiz"
@@ -124,7 +131,6 @@ const App = () => {
           </MainLayout>
         }
       />
-
       {/* Questions */}
       <Route
         path="/questions"
@@ -138,7 +144,6 @@ const App = () => {
           </ProtectedRoute>
         }
       />
-
       {/* Results */}
       <Route
         path="/results"
@@ -164,7 +169,6 @@ const App = () => {
           </ProtectedRoute>
         }
       />
-
       {/* Users */}
       <Route
         path="/profile"
@@ -190,7 +194,6 @@ const App = () => {
           </ProtectedRoute>
         }
       />
-
       {/* Quiz */}
       <Route
         path="/terms"
@@ -212,14 +215,13 @@ const App = () => {
           </MainLayout>
         }
       />
-
-      // ForgotPassword & Reset Password 
+      // ForgotPassword & Reset Password
       <Route
         path="/forgotpassword"
         element={
           <MainLayout>
             <Suspense fallback={<CommonProgress />}>
-             <ForgotPassword />
+              <ForgotPassword />
             </Suspense>
           </MainLayout>
         }
@@ -229,7 +231,7 @@ const App = () => {
         element={
           <MainLayout>
             <Suspense fallback={<CommonProgress />}>
-             <ResetPassword />
+              <ResetPassword />
             </Suspense>
           </MainLayout>
         }

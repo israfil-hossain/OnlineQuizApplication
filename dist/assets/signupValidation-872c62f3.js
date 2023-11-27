@@ -1,1 +1,0 @@
-import{c as i,d as e}from"./index.esm-389e3566.js";const a=i({name:e().required("Name is Required"),email:e().email().required("Email is Required"),mobile:e().matches(/^[0-9]+$/,"Mobile number must contain only digits").required("Mobile number is required")});export{a as s};

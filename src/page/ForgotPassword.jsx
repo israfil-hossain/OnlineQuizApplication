@@ -4,7 +4,7 @@ import forgotPasswordValidationSchema from "../utils/validation/forgotPasswordVa
 import { Progress } from "../components/common/Progress";
 import { BiLockAlt } from "react-icons/bi";
 import AuthService from "../service/AuthService";
-import { toast } from "react-toastify"; 
+import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 const ForgotPassword = () => {
   const initialValues = {
@@ -15,17 +15,15 @@ const ForgotPassword = () => {
 
   const handleSubmit = async (values, { setSubmitting, setErrors }) => {
     setIsLoading(true);
-    AuthService.forgotPassword(values).then((response)=>{
-        console.log("Response", response); 
-    
-            toast.success("Successfully Reset Password Link Send by Your Email !");
-            setIsLoading(false);
-            navigate("/login");
-      
-    }).catch((err) => {
+    AuthService.forgotPassword(values)
+      .then((response) => {
+        toast.success("Successfully Reset Password Link Send by Your Email !");
+        setIsLoading(false);
+        navigate("/login");
+      })
+      .catch((err) => {
         setIsLoading(false);
         toast.error("Something went Wrong!");
-        console.log("Err => ", err);
       });
   };
   return (

@@ -159,7 +159,7 @@ const Signin = () => {
                         />
                         <Link to="/forgotpassword">
                           <p className="pt-3 text-blue-400 hover:text-blue-700">
-                            forgot password ?
+                            Forgot Password ?
                           </p>
                         </Link>
                       </div>
@@ -189,7 +189,7 @@ const Signin = () => {
               <div className=" pt-5 ">
                 <Link to="/signup">
                   <span className="font-medium text-yellow-600 hover:text-yellow-700">
-                    {"Don't Have an account? please Signup here"}
+                    {"Don't Have an account? Signup here"}
                   </span>
                 </Link>
               </div>
@@ -197,7 +197,7 @@ const Signin = () => {
           </div>
         </div>
 
-        <div className=" lg:hidden bg-white  px-6 py-8 mt-5 shadow-md rounded-lg  hover:shadow-lg">
+        <div className=" lg:hidden bg-white  px-20 py-8 mt-5 shadow-md rounded-lg  hover:shadow-lg">
           <div className="  flex justify-center items-center w-full mb-5">
             <div className="w-20 h-20 rounded-md ">
               <img src={logo} alt="" className="" />
@@ -289,7 +289,7 @@ const Signin = () => {
                       />
                       <Link to="/forgotpassword">
                         <p className="pt-3 text-blue-400 hover:text-blue-700">
-                          forgot password ?
+                          Forgot Password ?
                         </p>
                       </Link>
                     </div>
@@ -310,7 +310,7 @@ const Signin = () => {
                           />
                         )}
                       </span>
-                      Sign Login
+                      Sign in
                     </button>
                   </div>
                 </Form>
@@ -319,7 +319,7 @@ const Signin = () => {
             <div className="pt-5">
               <Link to="/signup">
                 <span className="font-medium text-yellow-600 hover:text-yellow-700">
-                  {"Don't Have an account? please Signup here "}
+                  {"Don't Have an account? Signup here "}
                 </span>
               </Link>
             </div>

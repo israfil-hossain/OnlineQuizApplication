@@ -104,15 +104,15 @@ const Dashboard = () => {
   return (
     <Fragment>
       <div className="xl:px-12 xs:px-0 lg:px-10">
-        <div className="flex lg:flex-row md:flex-row space-x-5 xs:flex-col border-2 rounded-lg mb-12">
+        <div className="flex lg:flex-row md:flex-row space-x-5 xs:flex-col border-2 rounded-lg mb-8">
           {slider?.map((slider, i) =>
             slider.status === "active" ? (
               <div
                 key={i + 1}
-                className="bg-white rounded-lg justify-center items-center p-5  flex flex-col w-full shadow-sm  "
+                className="bg-white rounded-lg justify-center items-center  p-5 flex flex-col w-full shadow-sm  "
               >
                 {slider?.imageUrl && (
-                  <div className="h-auto  w-full top-0 mt-4">
+                  <div className="h-auto  w-full top-0 ">
                     <img
                       src={slider?.imageUrl}
                       alt="slider"
@@ -121,7 +121,7 @@ const Dashboard = () => {
                   </div>
                 )}
                 {slider?.text && (
-                  <span className="lg:text-xl text-sm text-gray-700 font-semibold font-sans justify-center flex items-center text-center  px-5 py-8">
+                  <span className="lg:text-xl text-sm text-gray-700 font-semibold font-sans justify-center flex items-center text-center  px-5 pt-3">
                     {" 👋 "}
                     {slider?.text}
                   </span>
@@ -131,19 +131,19 @@ const Dashboard = () => {
           )}
         </div>
 
-        <div className="xl:px-12  rounded-lg bg-white mb-10 border-2 xs:pb-5">
+        <div className="xl:px-12  rounded-lg bg-white mb-8 border-2 xs:pb-5">
           <div className=" overflow-hidden h-full w-full">
             <div className="flex-col lg:flex-row flex xs:flex-col lg:justify-between xs:justify-center justify-center items-center md:px-16 h-full w-full">
-              <div className="lg:w-[450px] lg:h-full xs:w-[300px] w-full flex justify-center ml-28 sm:ml-12 xs:ml-12 h-[300px] lg:px-0 px-4 md:px-10  md:mb-10  py-5">
+              <div className="lg:w-[450px] lg:h-96 xs:w-[300px] w-full flex justify-center ml-28 sm:ml-12 xs:ml-12 h-[300px] lg:px-0 px-4 md:px-10  md:mb-10  py-5">
                 <img
                   src={control ? control[0]?.image : hero}
                   alt="hero"
-                  className="w-full h-full rounded-lg pt-4"
+                  className="w-full h-full rounded-lg object-fit mt-4"
                 />
               </div>
               <div className="lg:w-1/2 xs:w-full w-full flex justify-center items-center ">
                 <div className="w-full flex flex-col h-full items-center text-center ">
-                  <span className="pt-10 px-5 lg:text-[30px] xs:text-[25px] md:text-[35px] sm:text-[30px] text-center pb-2 md:pb-5 font-sans font-bold inline-block bg-gradient-to-r from-purple-400 to-emerald-700 text-transparent bg-clip-text">
+                  <span className="pt-5 px-5 lg:text-[30px] xs:text-[25px] md:text-[35px] sm:text-[30px] text-center pb-2 md:pb-5 font-sans font-bold inline-block bg-gradient-to-r from-purple-400 to-emerald-700 text-transparent bg-clip-text">
                     {control
                       ? control[0]?.title
                       : "Making Your MRCS Journey Easiest"}

@@ -31,7 +31,7 @@ const Card = ({
               Free
             </span>
           </div>
-          <div className="h-[220px] pb-4 mt-6 blur-0 flex justify-center items-center rounded-md  w-full mb-1">
+          <div className="h-[200px] pb-4 mt-6 blur-0 flex justify-center items-center rounded-md  w-full mb-1">
             <img
               src={image}
               alt=""
@@ -39,7 +39,7 @@ const Card = ({
             />
           </div>
           <div className="w-full  border-b-2 border-solid border-slate-200 py-1"></div>
-          <div className="p-2  flex flex-col  mb-2 h-[50px]">
+          <div className="p-2  flex flex-col  mb-2 h-[70px]">
             <span className="text-gray-800 font-sans font-bold lg:text-[16px] xs:text-[12px] sm:text-[14px] md:text-[14px]">
               {title.length > 18 ? title.substring(0, 18) + ".." : title}
             </span>
@@ -80,7 +80,7 @@ const Card = ({
               Paid
             </span>
           </div>
-          <div className="blur-0 h-[220px] p-3  flex justify-center items-center rounded-md t w-full mb-1 pb-4 pt-2">
+          <div className="blur-0 h-[200px] p-3  flex justify-center items-center rounded-md t w-full mb-1 pb-4 pt-2">
             <img
               src={image}
               alt=""
@@ -88,7 +88,7 @@ const Card = ({
             />
           </div>
           <div className=" w-full border-b-2 border-solid border-slate-200 py-1"></div>
-          <div className="p-2  flex flex-col  mb-2 h-[50px]">
+          <div className="p-2  flex flex-col  mb-2 h-[70px]">
             <span className="text-red-800 font-sans font-bold lg:text-[16px] xs:text-[12px] sm:text-[14px] md:text-[14px]">
               {title.length > 18 ? title.substring(0, 18) + ".." : title}
             </span>

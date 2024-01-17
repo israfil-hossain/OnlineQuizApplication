@@ -17,7 +17,7 @@ const ForgotPassword = () => {
     setIsLoading(true);
     AuthService.forgotPassword(values)
       .then((response) => {
-        toast.success("Successfully Reset Password Link Send by Your Email !");
+        toast.success("We'll send you a recovery link to your email address shortly");
         setIsLoading(false);
         navigate("/login");
       })

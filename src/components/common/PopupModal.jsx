@@ -14,7 +14,7 @@ function PopupModal({ isOpen, onClose }) {
 
   const fetchData = async () => {
     const res = await UserService.getSubscription();
-    setData(res?.data[0]?.subscription);
+    setData(res?.data?.subscription);
   };
   const modalStyle = {
     display: "flex",

@@ -16,9 +16,8 @@ import ControlService from "../service/ControlService";
 const Dashboard = () => {
   const [slider, setSlider] = useState([]);
   const [study, setStudy] = useState([]);
-  const [control,setControl] = useState([]);
+  const [control, setControl] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
-
 
   const id = localStorage.getItem("userid");
 
@@ -63,7 +62,9 @@ const Dashboard = () => {
     const fetchControl = async () => {
       try {
         const response = await ControlService.getControl();
-        const activeControl = response?.data?.filter((item) => item.status === "active");
+        const activeControl = response?.data?.filter(
+          (item) => item.status === "active"
+        );
         setControl(activeControl);
       } catch (error) {
         console.error("Error fetching slider:", error);
@@ -75,12 +76,16 @@ const Dashboard = () => {
     fetchControl();
   }, []);
 
-  const { data:popularquiz, isLoading, isError } = useQuery("myData", () =>
+  const {
+    data: popularquiz,
+    isLoading,
+    isError,
+  } = useQuery("myData", () =>
     API.get("/category").then((res) =>
       res.data.filter((item) => item.cat_status === "active")
     )
   );
-  
+
   const closeModal = () => {
     setIsModalOpen(false);
     localStorage.setItem("modalShown", "true");
@@ -99,54 +104,24 @@ const Dashboard = () => {
   return (
     <Fragment>
       <div className="xl:px-12 xs:px-0 lg:px-10">
-        <div className="xl:px-12  rounded-lg bg-white mb-10 border-2 xs:pb-5">
-          <div className=" overflow-hidden h-full w-full">
-            <div className="flex-col lg:flex-row flex xs:flex-col lg:justify-between xs:justify-center justify-center items-center md:px-16 h-full w-full">
-              <div className="lg:w-[450px] lg:h-full xs:w-[300px] w-full flex justify-center ml-28 sm:ml-12 xs:ml-12 h-[300px] lg:px-0 px-4 md:px-10  md:mb-10  py-5">
-                <img src={control ? control[0]?.image : hero} alt="hero" className="w-full h-full rounded-lg pt-4" />
-              </div>
-              <div className="lg:w-1/2 xs:w-full w-full flex justify-center items-center ">
-                <div className="w-full flex flex-col h-full items-center text-center ">
-                  <span className="pt-10 px-5 lg:text-[30px] xs:text-[25px] md:text-[35px] sm:text-[30px] text-center pb-2 md:pb-5 font-sans font-bold inline-block bg-gradient-to-r from-purple-400 to-emerald-700 text-transparent bg-clip-text">
-                    {control ? control[0]?.title : "Making Your MRCS Journey Easiest"}
-                  </span>
-                  <span className="text-center pt-4 px-5 lg:text-[25px] xs:text-[20px] text-[30px]   xs:pl-0 md:pl-8 items-center font-sans font-semibold inline-block bg-gradient-to-r from-emerald-500 to-[#4D317D] text-transparent bg-clip-text">
-                  {control ? control[0]?.subtitle : "If you never try, You will never win"}
-                  </span>
-                  <br />
-                  <Link to="/examschedule">
-                    <button className="py-3 rounded-full px-16  bg-gradient-to-r from-emerald-500 to-indigo-400 text-lg font-bold text-white ">
-                      Start
-                    </button>
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            {/* <div className="absolute bottom-0 left-0 w-full">
-            <img src={wave} alt="wave" className="w-full h-28" />
-          </div> */}
-          </div>
-        </div>
-
-        <div className="flex lg:flex-row md:flex-row space-x-5 xs:flex-col border-2 rounded-lg">
+        <div className="flex lg:flex-row md:flex-row space-x-5 xs:flex-col border-2 rounded-lg mb-12">
           {slider?.map((slider, i) =>
             slider.status === "active" ? (
               <div
                 key={i + 1}
-                className="bg-white rounded-lg justify-center items-center p-5  flex flex-col w-full shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-xl"
+                className="bg-white rounded-lg justify-center items-center p-5  flex flex-col w-full shadow-sm  "
               >
                 {slider?.imageUrl && (
-                  <div className="h-auto w-full  mt-0 top-0">
+                  <div className="h-auto  w-full top-0 mt-4">
                     <img
                       src={slider?.imageUrl}
                       alt="slider"
-                      className="w-full h-full object-contain rounded-3xl"
+                      className="w-full h-full  object-contain rounded-2xl "
                     />
                   </div>
                 )}
                 {slider?.text && (
-                  <span className="text-xl text-black font-semibold font-sans justify-center flex items-center text-center  px-5 py-8">
+                  <span className="lg:text-xl text-sm text-gray-700 font-semibold font-sans justify-center flex items-center text-center  px-5 py-8">
                     {" 👋 "}
                     {slider?.text}
                   </span>
@@ -154,6 +129,40 @@ const Dashboard = () => {
               </div>
             ) : null
           )}
+        </div>
+
+        <div className="xl:px-12  rounded-lg bg-white mb-10 border-2 xs:pb-5">
+          <div className=" overflow-hidden h-full w-full">
+            <div className="flex-col lg:flex-row flex xs:flex-col lg:justify-between xs:justify-center justify-center items-center md:px-16 h-full w-full">
+              <div className="lg:w-[450px] lg:h-full xs:w-[300px] w-full flex justify-center ml-28 sm:ml-12 xs:ml-12 h-[300px] lg:px-0 px-4 md:px-10  md:mb-10  py-5">
+                <img
+                  src={control ? control[0]?.image : hero}
+                  alt="hero"
+                  className="w-full h-full rounded-lg pt-4"
+                />
+              </div>
+              <div className="lg:w-1/2 xs:w-full w-full flex justify-center items-center ">
+                <div className="w-full flex flex-col h-full items-center text-center ">
+                  <span className="pt-10 px-5 lg:text-[30px] xs:text-[25px] md:text-[35px] sm:text-[30px] text-center pb-2 md:pb-5 font-sans font-bold inline-block bg-gradient-to-r from-purple-400 to-emerald-700 text-transparent bg-clip-text">
+                    {control
+                      ? control[0]?.title
+                      : "Making Your MRCS Journey Easiest"}
+                  </span>
+                  <span className="text-center pt-4 px-5 lg:text-[25px] xs:text-[20px] text-[30px]   xs:pl-0 md:pl-8 items-center font-sans font-semibold inline-block bg-gradient-to-r from-emerald-500 to-[#4D317D] text-transparent bg-clip-text">
+                    {control
+                      ? control[0]?.subtitle
+                      : "If you never try, You will never win"}
+                  </span>
+                  <br />
+                  <Link to="/examschedule">
+                    <button className="py-3 rounded-full px-16  bg-gradient-to-r from-emerald-500 to-indigo-400 text-lg font-bold text-white ">
+                      Study Plan
+                    </button>
+                  </Link>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
 
         {/* Study material  */}

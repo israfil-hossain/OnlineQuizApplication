@@ -47,16 +47,16 @@ const Study = () => {
               🌟{data?.study_title}🌟
             </span>
           </div>
-          <div className="flex justify-center items-center ">
+          {/* <div className="flex justify-center items-center ">
             <img src={data?.image} alt="" className="w-60 h-48" />
-          </div>
+          </div> */}
           <div className="flex flex-col justify-center items-center px-4 w-full mt-5 mx-auto">
-            <div className="flex flex-col px-4 w-full mx-auto">
+            {/* <div className="flex flex-col px-4 w-full mx-auto">
               <div className="text-lg text-emerald-500 font-medium font-sans mr-2 ">
                 {"Description :"}
               </div>
               <div className="">{data?.study_description}</div>
-            </div>
+            </div> */}
             <div className="w-full px-4 mt-5">
               {data?.text1 ? (
                 <div dangerouslySetInnerHTML={{ __html: data?.text1 }} />
@@ -65,13 +65,14 @@ const Study = () => {
               )}
             </div>
           </div>
-
-          <div className="pb-10 pt-5 px-4">
-            <span>👋 Take an Exam : </span>
-            <Link to={data?.link}>
-              <span className="text-blue-400">{data?.link}</span>
-            </Link>
-          </div>
+          {data?.link && (
+            <div className="pb-10 pt-5 px-4">
+              <span>👋 Take an Exam : </span>
+              <Link to={data?.link}>
+                <span className="text-blue-400">{data?.link}</span>
+              </Link>
+            </div>
+          )}
         </div>
       </div>
     </Fragment>

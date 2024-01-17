@@ -116,7 +116,7 @@ const Dashboard = () => {
                   <br />
                   <Link to="/examschedule">
                     <button className="py-3 rounded-full px-16  bg-gradient-to-r from-emerald-500 to-indigo-400 text-lg font-bold text-white ">
-                      Start
+                      Study Plan
                     </button>
                   </Link>
                 </div>
@@ -127,33 +127,6 @@ const Dashboard = () => {
             <img src={wave} alt="wave" className="w-full h-28" />
           </div> */}
           </div>
-        </div>
-
-        <div className="flex lg:flex-row md:flex-row space-x-5 xs:flex-col border-2 rounded-lg">
-          {slider?.map((slider, i) =>
-            slider.status === "active" ? (
-              <div
-                key={i + 1}
-                className="bg-white rounded-lg justify-center items-center p-5  flex flex-col w-full shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-xl"
-              >
-                {slider?.imageUrl && (
-                  <div className="h-auto w-full  mt-0 top-0">
-                    <img
-                      src={slider?.imageUrl}
-                      alt="slider"
-                      className="w-full h-full object-contain rounded-3xl"
-                    />
-                  </div>
-                )}
-                {slider?.text && (
-                  <span className="text-xl text-black font-semibold font-sans justify-center flex items-center text-center  px-5 py-8">
-                    {" 👋 "}
-                    {slider?.text}
-                  </span>
-                )}
-              </div>
-            ) : null
-          )}
         </div>
 
         {/* Study material  */}
@@ -183,6 +156,33 @@ const Dashboard = () => {
               link={`/allstudy/study/${study?._id} `}
             />
           ))}
+        </div>
+
+        <div className="flex lg:flex-row md:flex-row space-x-5 xs:flex-col border-2 rounded-lg mt-10">
+          {slider?.map((slider, i) =>
+            slider.status === "active" ? (
+              <div
+                key={i + 1}
+                className="bg-white rounded-lg justify-center items-center p-5  flex flex-col w-full shadow-lg bg-opacity-50 backdrop-filter backdrop-blur-xl"
+              >
+                {slider?.imageUrl && (
+                  <div className="h-auto w-full  mt-0 top-0">
+                    <img
+                      src={slider?.imageUrl}
+                      alt="slider"
+                      className="w-full h-full object-contain rounded-3xl"
+                    />
+                  </div>
+                )}
+                {slider?.text && (
+                  <span className="text-xl text-black font-semibold font-sans justify-center flex items-center text-center  px-5 py-8">
+                    {" 👋 "}
+                    {slider?.text}
+                  </span>
+                )}
+              </div>
+            ) : null
+          )}
         </div>
 
         {/* popular quiz category */}

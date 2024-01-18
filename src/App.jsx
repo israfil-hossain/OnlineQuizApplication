@@ -39,7 +39,7 @@ const App = () => {
         }
       />
       <Route
-        path="/examschedule"
+        path="/studyplan"
         element={
           <MainLayout>
             <Suspense fallback={<CommonProgress />}>

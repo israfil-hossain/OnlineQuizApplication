@@ -154,9 +154,9 @@ const Dashboard = () => {
                       : "If you never try, You will never win"}
                   </span>
                   <br />
-                  <Link to="/examschedule">
+                  <Link to="/studyplan">
                     <button className="py-3 rounded-full px-16  bg-gradient-to-r from-emerald-500 to-indigo-400 text-lg font-bold text-white ">
-                      Study Plan
+                      {control[0]?.buttonName}
                     </button>
                   </Link>
                 </div>
